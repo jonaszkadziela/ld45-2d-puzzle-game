@@ -18,7 +18,7 @@ public class FlickerLight : MonoBehaviour
     void Update()
     {
         targetScale = increasing ? initialScale * multiplyScale : initialScale;
-        transform.localScale = Vector3.Lerp(transform.localScale, targetScale, flickerSpeed);
+        transform.localScale = Vector3.MoveTowards(transform.localScale, targetScale, flickerSpeed * Time.deltaTime);
 
         if (Vector3.Distance(transform.localScale, targetScale) < 0.01f)
         {
