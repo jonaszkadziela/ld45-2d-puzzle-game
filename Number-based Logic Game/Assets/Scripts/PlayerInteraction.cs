@@ -13,17 +13,17 @@ public class PlayerInteraction : MonoBehaviour
 
         if (Input.GetButtonDown("Interact") && interactiveObject)
         {
-            if (interactiveObject.gameObject == PlayerController.HeldObject)
+            if (interactiveObject.gameObject == PlayerController.Instance.heldObject)
             {
-                PlayerController.HeldObject = null;
+                PlayerController.Instance.heldObject = null;
 
                 interactiveObject.InteractionFinish();
             }
             else
             {
-                if (!PlayerController.HeldObject)
+                if (!PlayerController.Instance.heldObject)
                 {
-                    PlayerController.HeldObject = interactiveObject.gameObject;
+                    PlayerController.Instance.heldObject = interactiveObject.gameObject;
 
                     interactiveObject.InteractionStart();
                 }

@@ -4,13 +4,13 @@ public class PlayerController : MonoBehaviour
 {
     public static PlayerController Instance;
 
-    public static int Money;
-    public static float Energy;
+    public int money;
+    public float energy;
 
-    public static int SlotsLength;
+    public int slotsLength;
 
-    public static GameObject HeldObject;
-    public static Transform[] Slots;
+    public GameObject heldObject;
+    public Transform[] slots;
 
     public Transform slotsContainer;
 
@@ -28,24 +28,24 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
-        Energy = GameSettings.InitialEnergy;
-        Money = GameSettings.InitialMoney;
+        energy = GameSettings.InitialEnergy;
+        money = GameSettings.InitialMoney;
 
-        SlotsLength = slotsContainer.childCount;
-        Slots = new Transform[SlotsLength];
+        slotsLength = slotsContainer.childCount;
+        slots = new Transform[slotsLength];
 
-        for (int i = 0; i < SlotsLength; i++)
+        for (int i = 0; i < slotsLength; i++)
         {
-            Slots[i] = slotsContainer.GetChild(i);
+            slots[i] = slotsContainer.GetChild(i);
         }
     }
 
-    public static Transform DetermineNearestSlot(Vector3 objectPosition)
+    public Transform DetermineNearestSlot(Vector3 objectPosition)
     {
         float minDistance = Mathf.Infinity;
         Transform nearestSlot = null;
 
-        foreach (Transform t in Slots)
+        foreach (Transform t in slots)
         {
             float currentDistance = Vector3.Distance(t.position, objectPosition);
 

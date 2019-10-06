@@ -9,8 +9,8 @@ public class StatisticsUI : MonoBehaviour
 
     void Update()
     {
-        energyValueText.text = ((int)PlayerController.Energy).ToString();
-        moneyValueText.text = PlayerController.Money.ToString();
+        energyValueText.text = ((int)PlayerController.Instance.energy).ToString();
+        moneyValueText.text = PlayerController.Instance.money.ToString();
         timeValueText.text = "0:00"; // TODO: Implement time display
     }
 }

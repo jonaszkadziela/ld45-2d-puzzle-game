@@ -25,11 +25,11 @@ public class PlayerMovement : MonoBehaviour
     {
         speed = initialSpeed;
 
-        if (PlayerController.HeldObject)
+        if (PlayerController.Instance.heldObject)
         {
-            if (PlayerController.HeldObject.GetComponent<Stone>())
+            if (PlayerController.Instance.heldObject.GetComponent<Stone>())
             {
-                float stoneMass = PlayerController.HeldObject.GetComponent<Rigidbody2D>().mass / 10f;
+                float stoneMass = PlayerController.Instance.heldObject.GetComponent<Rigidbody2D>().mass / 10f;
                 float massFactor = stoneMass / (rb.mass + stoneMass);
                 
                 speed *= 1 - massFactor;

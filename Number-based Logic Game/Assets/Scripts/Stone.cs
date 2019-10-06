@@ -67,7 +67,7 @@ public class Stone : InteractiveObject
     public override void InteractionStart()
     {
         isPickedUp = true;
-        slot = PlayerController.DetermineNearestSlot(transform.position);
+        slot = PlayerController.Instance.DetermineNearestSlot(transform.position);
     }
 
     public override void InteractionFinish()
