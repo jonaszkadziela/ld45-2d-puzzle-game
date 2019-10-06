@@ -2,35 +2,30 @@
 
 public class PlayerInteraction : MonoBehaviour
 {
-    private GameObject nearbyObject = null;
+    private InteractiveObject interactiveObject = null;
 
     void Update()
     {
-        if (!nearbyObject)
+        if (!interactiveObject)
         {
             return;
         }
 
-        if (Input.GetButtonDown("Interact"))
+        if (Input.GetButtonDown("Interact") && interactiveObject)
         {
-            InteractiveObject interactiveObject = nearbyObject.GetComponent<InteractiveObject>();
-
-            if (interactiveObject)
+            if (interactiveObject.gameObject == PlayerController.HeldObject)
             {
-                if (nearbyObject == PlayerController.HeldObject)
-                {
-                    PlayerController.HeldObject = null;
+                PlayerController.HeldObject = null;
 
-                    interactiveObject.InteractionFinish();
-                }
-                else
+                interactiveObject.InteractionFinish();
+            }
+            else
+            {
+                if (!PlayerController.HeldObject)
                 {
-                    if (!PlayerController.HeldObject)
-                    {
-                        PlayerController.HeldObject = nearbyObject;
+                    PlayerController.HeldObject = interactiveObject.gameObject;
 
-                        interactiveObject.InteractionStart();
-                    }
+                    interactiveObject.InteractionStart();
                 }
             }
         }
@@ -38,17 +33,20 @@ public class PlayerInteraction : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (!nearbyObject)
+        if (!interactiveObject)
         {
-            nearbyObject = other.gameObject;
+            interactiveObject = other.GetComponent<InteractiveObject>();
         }
     }
 
     void OnTriggerExit2D(Collider2D other)
     {
-        if (nearbyObject == other.gameObject)
+        if (interactiveObject)
         {
-            nearbyObject = null;
+            if (other.gameObject == interactiveObject.gameObject)
+            {
+                interactiveObject = null;
+            }
         }
     }
 }

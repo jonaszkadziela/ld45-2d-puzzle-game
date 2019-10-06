@@ -39,4 +39,23 @@ public class PlayerController : MonoBehaviour
             Slots[i] = slotsContainer.GetChild(i);
         }
     }
+
+    public static Transform DetermineNearestSlot(Vector3 objectPosition)
+    {
+        float minDistance = Mathf.Infinity;
+        Transform nearestSlot = null;
+
+        foreach (Transform t in Slots)
+        {
+            float currentDistance = Vector3.Distance(t.position, objectPosition);
+
+            if (currentDistance < minDistance)
+            {
+                minDistance = currentDistance;
+                nearestSlot = t;
+            }
+        }
+
+        return nearestSlot;
+    }
 }
