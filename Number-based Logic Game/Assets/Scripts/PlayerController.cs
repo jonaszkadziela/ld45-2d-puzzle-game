@@ -5,7 +5,7 @@ public class PlayerController : MonoBehaviour
     public static PlayerController Instance;
 
     public static int Money;
-    public static float MovementCredits;
+    public static float Energy;
 
     public static int SlotsLength;
 
@@ -28,8 +28,8 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
+        Energy = GameSettings.InitialEnergy;
         Money = GameSettings.InitialMoney;
-        MovementCredits = GameSettings.InitialMovementCredits;
 
         SlotsLength = slotsContainer.childCount;
         Slots = new Transform[SlotsLength];
