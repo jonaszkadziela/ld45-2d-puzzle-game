@@ -8,17 +8,20 @@ public class GameSettings : MonoBehaviour
 
     [Header("Player Settings")]
     public int initialMoney = 0;
+    public int moneyRewardDecreasePerMinute = 10;
     public float initialEnergy = 100f;
     public float energyDecreaseSlowness = 10f;
+    public RangeInt moneyRewardRange = new RangeInt(10, 50);
+    public RangeInt energyRewardRange = new RangeInt(20, 100);
 
     [Header("Gameplay Settings")]
     public RangeInt stoneSpawnAmount = new RangeInt(20, 40);
-    public RangeInt stoneInitialNumberRange = new RangeInt(10, 30);
+    public RangeInt stoneInitialNumberRange = new RangeInt(5, 30);
     public int stoneSpawnMoreThreshold = 10;
 
-    public RangeInt targetNumber = new RangeInt(50, 150);
-    public RangeInt targetMargin = new RangeInt(10, 20);
-    public RangeInt minTargetMargin = new RangeInt(1, 5);
+    public RangeInt targetNumberRange = new RangeInt(50, 150);
+    public RangeInt targetMarginRange = new RangeInt(10, 20);
+    public RangeInt minTargetMarginRange = new RangeInt(1, 5);
 
     public int targetNumberIncrease = 20;
     public int targetMarginDecrease = 2;
@@ -28,16 +31,19 @@ public class GameSettings : MonoBehaviour
      */
     
     public static int InitialMoney;
+    public static int MoneyRewardDecreasePerMinute;
     public static float InitialEnergy;
     public static float EnergyDecreaseSlowness;
+    public static RangeInt MoneyRewardRange;
+    public static RangeInt EnergyRewardRange;
 
     public static RangeInt StoneSpawnAmount;
     public static RangeInt StoneInitialNumberRange;
     public static int StoneSpawnMoreThreshold;
 
-    public static RangeInt TargetNumber;
-    public static RangeInt TargetMargin;
-    public static RangeInt MinTargetMargin;
+    public static RangeInt TargetNumberRange;
+    public static RangeInt TargetMarginRange;
+    public static RangeInt MinTargetMarginRange;
 
     public static int TargetNumberIncrease;
     public static int TargetMarginDecrease;
@@ -45,16 +51,19 @@ public class GameSettings : MonoBehaviour
     void Awake()
     {
         InitialMoney = initialMoney;
+        MoneyRewardDecreasePerMinute = moneyRewardDecreasePerMinute;
         InitialEnergy = initialEnergy;
+        MoneyRewardRange = moneyRewardRange;
+        EnergyRewardRange = energyRewardRange;
         EnergyDecreaseSlowness = energyDecreaseSlowness;
 
         StoneSpawnAmount = stoneSpawnAmount;
         StoneInitialNumberRange = stoneInitialNumberRange;
         StoneSpawnMoreThreshold = stoneSpawnMoreThreshold;
 
-        TargetNumber = targetNumber;
-        TargetMargin = targetMargin;
-        MinTargetMargin = minTargetMargin;
+        TargetNumberRange = targetNumberRange;
+        TargetMarginRange = targetMarginRange;
+        MinTargetMarginRange = minTargetMarginRange;
 
         TargetNumberIncrease = targetNumberIncrease;
         TargetMarginDecrease = targetMarginDecrease;

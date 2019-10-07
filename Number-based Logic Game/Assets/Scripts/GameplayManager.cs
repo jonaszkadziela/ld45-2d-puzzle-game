@@ -52,6 +52,10 @@ public class GameplayManager : MonoBehaviour
     void Start()
     {
         stonesList = new List<GameObject>();
+
+        levelContainer = new GameObject("Level Elements");
+        levelContainer.transform.parent = map.transform;
+
         NewRound();
     }
 
@@ -119,42 +123,63 @@ public class GameplayManager : MonoBehaviour
         }
     }
 
+    private void DetermineReward()
+    {
+        float roundTime = Time.time - RoundStartTime;
+        int onTargetFactor = 1 - Mathf.Abs(TargetNumber - CurrentNumber) / TargetNumberMargin;
+
+        PlayerController.Instance.money += Mathf.Max(
+            GameSettings.MoneyRewardRange.min,
+            GameSettings.MoneyRewardRange.max - GameSettings.MoneyRewardDecreasePerMinute * (int)roundTime / 60
+        );
+        PlayerController.Instance.energy += Mathf.Max(
+            GameSettings.EnergyRewardRange.min,
+            GameSettings.EnergyRewardRange.max * onTargetFactor
+        );
+    }
+
     private void NewRound()
     {
+        LevelGenerated = false;
+
+        foreach (GameObject stone in stonesList)
+        {
+            Destroy(stone);
+        }
+
         TargetNumber = Random.Range(
-            GameSettings.TargetNumber.min,
-            GameSettings.TargetNumber.max
+            GameSettings.TargetNumberRange.min,
+            GameSettings.TargetNumberRange.max
         );
         TargetNumberMargin = Random.Range(
-            GameSettings.TargetMargin.min,
-            GameSettings.TargetMargin.max
+            GameSettings.TargetMarginRange.min,
+            GameSettings.TargetMarginRange.max
         );
 
         CurrentRound++;
         CurrentNumber = 0;
-
-        LevelGenerated = false;
     }
 
     private void CompletedRound()
     {
-        GameSettings.TargetNumber += GameSettings.TargetNumberIncrease;
-        GameSettings.TargetMargin -= GameSettings.TargetMarginDecrease;
+        GameSettings.TargetNumberRange += GameSettings.TargetNumberIncrease;
+        GameSettings.TargetMarginRange -= GameSettings.TargetMarginDecrease;
 
-        GameSettings.TargetMargin.min = Mathf.Max(GameSettings.TargetMargin.min, GameSettings.MinTargetMargin.min);
-        GameSettings.TargetMargin.max = Mathf.Max(GameSettings.TargetMargin.max, GameSettings.MinTargetMargin.max);
+        GameSettings.TargetMarginRange.min = Mathf.Max(
+            GameSettings.TargetMarginRange.min,
+            GameSettings.MinTargetMarginRange.min
+        );
+        GameSettings.TargetMarginRange.max = Mathf.Max(
+            GameSettings.TargetMarginRange.max,
+            GameSettings.MinTargetMarginRange.max
+        );
 
+        DetermineReward();
         NewRound();
     }
 
     private void GenerateLevel(int stonesAmount)
     {
-        if (!LevelGenerated)
-        {
-            levelContainer = new GameObject("Level Elements");
-            levelContainer.transform.parent = map.transform;
-        }
-
         for (int i = 0; i < stonesAmount; i++)
         {
             bool tileGenerated = false;

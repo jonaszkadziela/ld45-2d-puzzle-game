@@ -89842,22 +89842,29 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialMoney: 0
-  initialEnergy: 10
+  moneyRewardDecreasePerMinute: 10
+  initialEnergy: 100
   energyDecreaseSlowness: 10
+  moneyRewardRange:
+    min: 10
+    max: 50
+  energyRewardRange:
+    min: 20
+    max: 100
   stoneSpawnAmount:
     min: 20
     max: 40
   stoneInitialNumberRange:
-    min: 10
+    min: 5
     max: 30
   stoneSpawnMoreThreshold: 10
-  targetNumber:
+  targetNumberRange:
     min: 50
     max: 150
-  targetMargin:
+  targetMarginRange:
     min: 10
     max: 20
-  minTargetMargin:
+  minTargetMarginRange:
     min: 1
     max: 5
   targetNumberIncrease: 20

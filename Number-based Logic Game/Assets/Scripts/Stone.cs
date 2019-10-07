@@ -64,7 +64,10 @@ public class Stone : InteractiveObject
 
     private void OnDestroy()
     {
-        // TODO: Show particles
+        if (GameplayManager.LevelGenerated)
+        {
+            // TODO: Show particles
+        }
         GameplayManager.Instance.stonesList.Remove(gameObject);
     }
 
