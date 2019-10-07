@@ -9,6 +9,18 @@ public class CameraFollowPlayer : MonoBehaviour
     void Start()
     {
         followCamera = GetComponent<CinemachineVirtualCamera>();
-        followCamera.Follow = PlayerController.Instance.transform;
+
+        if (PlayerController.Instance)
+        {
+            followCamera.Follow = PlayerController.Instance.transform;
+        }
+    }
+
+    void Update()
+    {
+        if (PlayerController.Instance && followCamera.Follow != PlayerController.Instance.transform)
+        {
+            followCamera.Follow = PlayerController.Instance.transform;
+        }
     }
 }

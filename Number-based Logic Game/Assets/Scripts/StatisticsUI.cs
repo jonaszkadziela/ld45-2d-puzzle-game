@@ -6,6 +6,9 @@ public class StatisticsUI : MonoBehaviour
 {
     public string initialTargetText = "Target";
 
+    public GameObject statisticsLeftPanel;
+    public GameObject statisticsRightPanel;
+
     public TextMeshProUGUI energyValueText;
     public TextMeshProUGUI moneyValueText;
 
@@ -17,20 +20,38 @@ public class StatisticsUI : MonoBehaviour
 
     void Update()
     {
-        energyValueText.text = ((int)PlayerController.Instance.energy).ToString();
-        moneyValueText.text = PlayerController.Instance.money.ToString();
+        if (PlayerController.Instance)
+        {
+            statisticsLeftPanel.SetActive(true);
 
-        roundValueText.text = GameplayManager.CurrentRound.ToString();
+            energyValueText.text = ((int)PlayerController.Instance.energy).ToString();
+            moneyValueText.text = PlayerController.Instance.money.ToString();
+        }
+        else
+        {
+            statisticsLeftPanel.SetActive(false);
+        }
 
-        float roundTime = Time.time - GameplayManager.RoundStartTime;
-        string timeFormat = ((int)roundTime / 3600) > 0 ? @"hh\:mm\:ss" : @"mm\:ss";
+        if (GameManager.State == GameState.CollectingNumbers)
+        {
+            statisticsRightPanel.SetActive(true);
 
-        TimeSpan roundTimeSpan = TimeSpan.FromSeconds(roundTime);
-        roundTimeValueText.text = roundTimeSpan.ToString(timeFormat);
+            roundValueText.text = GameplayManager.CurrentRound.ToString();
 
-        numberValueText.text = GameplayManager.CurrentNumber.ToString();
+            float roundTime = Time.time - GameplayManager.RoundStartTime;
+            string timeFormat = ((int)roundTime / 3600) > 0 ? @"hh\:mm\:ss" : @"mm\:ss";
 
-        targetText.text = initialTargetText + $" (+/- { GameplayManager.TargetNumberMargin })";
-        targetValueText.text = GameplayManager.TargetNumber.ToString();
+            TimeSpan roundTimeSpan = TimeSpan.FromSeconds(roundTime);
+            roundTimeValueText.text = roundTimeSpan.ToString(timeFormat);
+
+            numberValueText.text = GameplayManager.CurrentNumber.ToString();
+
+            targetText.text = initialTargetText + $" (+/- { GameplayManager.TargetNumberMargin })";
+            targetValueText.text = GameplayManager.TargetNumber.ToString();
+        }
+        else
+        {
+            statisticsRightPanel.SetActive(false);
+        }
     }
 }

@@ -17,8 +17,11 @@ public class GameplayManager : MonoBehaviour
     public RangeInt groundPlayAreaY;
     public Tile[] safeTiles;
 
+    public Vector2 playerSpawnPosition;
+
     public GameObject map;
     public GameObject stonePrefab;
+    public GameObject playerPrefab;
 
     public List<GameObject> stonesList;
 
@@ -55,6 +58,8 @@ public class GameplayManager : MonoBehaviour
                         GameSettings.Instance.stoneSpawnAmount.max
                     );
                     GenerateLevel(stonesAmount);
+
+                    Instantiate(playerPrefab, playerSpawnPosition, Quaternion.identity);
 
                     CurrentRound++;
                     RoundStartTime = Time.time;
