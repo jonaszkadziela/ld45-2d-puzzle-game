@@ -2,6 +2,14 @@
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
+public enum NumberOperation
+{
+    Addition,
+    Subtraction,
+    Multiplication,
+    Division,
+};
+
 public class GameplayManager : MonoBehaviour
 {
     public static GameplayManager Instance;
@@ -80,14 +88,48 @@ public class GameplayManager : MonoBehaviour
                     }
                 }
             break;
-
-            case GameState.GameOver:
-            default:
-            break;
         }
     }
 
-    void GenerateLevel(int stonesAmount)
+    public void ChangeCurrentNumber(NumberOperation operation, int number)
+    {
+        if (GameManager.State != GameState.CollectingNumbers)
+        {
+            return;
+        }
+
+        switch (operation)
+        {
+            case NumberOperation.Addition:
+                CurrentNumber += number;
+            break;
+
+            case NumberOperation.Subtraction:
+                CurrentNumber -= number;
+            break;
+
+            case NumberOperation.Multiplication:
+                CurrentNumber *= number;
+            break;
+
+            case NumberOperation.Division:
+                CurrentNumber /= number;
+            break;
+        }
+
+        if (Mathf.Abs(TargetNumber - CurrentNumber) <= TargetNumberMargin)
+        {
+            NewRound();
+        }
+    }
+
+    private void NewRound()
+    {
+        GameManager.State = GameState.CollectingNumbers;
+        levelGenerated = false;
+    }
+
+    private void GenerateLevel(int stonesAmount)
     {
         if (!levelGenerated)
         {
