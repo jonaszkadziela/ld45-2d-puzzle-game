@@ -20,6 +20,8 @@ public class GameplayManager : MonoBehaviour
     public static int TargetNumberMargin;
     public static float RoundStartTime;
 
+    public static bool LevelGenerated;
+
     public Tilemap groundTileMap;
     public RangeInt groundPlayAreaX;
     public RangeInt groundPlayAreaY;
@@ -34,7 +36,6 @@ public class GameplayManager : MonoBehaviour
     public List<GameObject> stonesList;
 
     private GameObject levelContainer;
-    private bool levelGenerated;
 
     void Awake()
     {
@@ -61,7 +62,7 @@ public class GameplayManager : MonoBehaviour
             return;
         }
 
-        if (!levelGenerated)
+        if (!LevelGenerated)
         {
             int stonesAmount = Random.Range(
                 GameSettings.StoneSpawnAmount.min,
@@ -132,7 +133,7 @@ public class GameplayManager : MonoBehaviour
         CurrentRound++;
         CurrentNumber = 0;
 
-        levelGenerated = false;
+        LevelGenerated = false;
     }
 
     private void CompletedRound()
@@ -148,7 +149,7 @@ public class GameplayManager : MonoBehaviour
 
     private void GenerateLevel(int stonesAmount)
     {
-        if (!levelGenerated)
+        if (!LevelGenerated)
         {
             levelContainer = new GameObject("Level Elements");
             levelContainer.transform.parent = map.transform;
@@ -191,6 +192,6 @@ public class GameplayManager : MonoBehaviour
             }
         }
 
-        levelGenerated = true;
+        LevelGenerated = true;
     }
 }

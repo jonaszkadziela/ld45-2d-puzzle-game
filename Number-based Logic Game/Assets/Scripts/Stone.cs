@@ -25,6 +25,7 @@ public class Stone : InteractiveObject
         rb = GetComponent<Rigidbody2D>();
 
         number = initialNumber;
+        previousPosition = transform.position;
     }
 
     void FixedUpdate()

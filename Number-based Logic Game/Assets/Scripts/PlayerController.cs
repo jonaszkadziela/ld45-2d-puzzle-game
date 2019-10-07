@@ -58,4 +58,14 @@ public class PlayerController : MonoBehaviour
 
         return nearestSlot;
     }
+
+    public void DetermineCurrentEnergy(float distanceMoved)
+    {
+        energy = GameSettings.InitialEnergy - distanceMoved / GameSettings.EnergyDecreaseSlowness;
+
+        if (energy <= 0)
+        {
+            GameManager.Instance.TriggerGameOver();
+        }
+    }
 }

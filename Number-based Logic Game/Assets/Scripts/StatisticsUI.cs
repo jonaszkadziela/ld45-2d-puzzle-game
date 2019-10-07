@@ -20,6 +20,11 @@ public class StatisticsUI : MonoBehaviour
 
     void Update()
     {
+        if (GameManager.GameOver)
+        {
+            return;
+        }
+
         if (PlayerController.Instance)
         {
             statisticsLeftPanel.SetActive(true);

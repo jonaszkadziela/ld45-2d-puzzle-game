@@ -89842,7 +89842,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialMoney: 0
-  initialEnergy: 100
+  initialEnergy: 10
+  energyDecreaseSlowness: 10
   stoneSpawnAmount:
     min: 20
     max: 40
@@ -89859,6 +89860,8 @@ MonoBehaviour:
   minTargetMargin:
     min: 1
     max: 5
+  targetNumberIncrease: 20
+  targetMarginDecrease: 2
 --- !u!114 &1021540600
 MonoBehaviour:
   m_ObjectHideFlags: 0

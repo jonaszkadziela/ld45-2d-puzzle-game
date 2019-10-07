@@ -9,6 +9,7 @@ public class GameSettings : MonoBehaviour
     [Header("Player Settings")]
     public int initialMoney = 0;
     public float initialEnergy = 100f;
+    public float energyDecreaseSlowness = 10f;
 
     [Header("Gameplay Settings")]
     public RangeInt stoneSpawnAmount = new RangeInt(20, 40);
@@ -28,6 +29,7 @@ public class GameSettings : MonoBehaviour
     
     public static int InitialMoney;
     public static float InitialEnergy;
+    public static float EnergyDecreaseSlowness;
 
     public static RangeInt StoneSpawnAmount;
     public static RangeInt StoneInitialNumberRange;
@@ -44,6 +46,7 @@ public class GameSettings : MonoBehaviour
     {
         InitialMoney = initialMoney;
         InitialEnergy = initialEnergy;
+        EnergyDecreaseSlowness = energyDecreaseSlowness;
 
         StoneSpawnAmount = stoneSpawnAmount;
         StoneInitialNumberRange = stoneInitialNumberRange;
