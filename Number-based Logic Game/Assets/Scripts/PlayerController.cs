@@ -28,8 +28,8 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
-        energy = GameSettings.InitialEnergy;
-        money = GameSettings.InitialMoney;
+        energy = GameSettings.Instance.initialEnergy;
+        money = GameSettings.Instance.initialMoney;
 
         slotsLength = slotsContainer.childCount;
         slots = new Transform[slotsLength];

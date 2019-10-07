@@ -23,6 +23,11 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (GameManager.State == GameState.GameOver)
+        {
+            return;
+        }
+
         speed = initialSpeed;
 
         if (PlayerController.Instance.heldObject)

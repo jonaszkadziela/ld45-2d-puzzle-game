@@ -4,7 +4,8 @@
 public class Stone : InteractiveObject
 {
     [Header("Statistics")]
-    public int initialNumber = 10;
+    [HideInInspector]
+    public int initialNumber;
     [HideInInspector]
     public int number;
     public float durability = 10f;
@@ -22,6 +23,7 @@ public class Stone : InteractiveObject
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+
         number = initialNumber;
     }
 
