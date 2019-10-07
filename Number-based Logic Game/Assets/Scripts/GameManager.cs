@@ -1,17 +1,10 @@
 ﻿using UnityEngine;
 
-public enum GameState
-{
-    NumericPuzzle,
-    CollectingNumbers,
-    GameOver,
-};
-
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
 
-    public static GameState State;
+    public static bool GameOver = false;
 
     void Awake()
     {
@@ -22,14 +15,11 @@ public class GameManager : MonoBehaviour
         else
         {
             Destroy(gameObject);
-            return;
         }
-
-        State = GameState.CollectingNumbers;
     }
 
     public void TriggerGameOver()
     {
-        State = GameState.GameOver;
+        GameOver = true;
     }
 }

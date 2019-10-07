@@ -32,26 +32,19 @@ public class StatisticsUI : MonoBehaviour
             statisticsLeftPanel.SetActive(false);
         }
 
-        if (GameManager.State == GameState.CollectingNumbers)
-        {
-            statisticsRightPanel.SetActive(true);
+        statisticsRightPanel.SetActive(true);
 
-            roundValueText.text = GameplayManager.CurrentRound.ToString();
+        roundValueText.text = GameplayManager.CurrentRound.ToString();
 
-            float roundTime = Time.time - GameplayManager.RoundStartTime;
-            string timeFormat = ((int)roundTime / 3600) > 0 ? @"hh\:mm\:ss" : @"mm\:ss";
+        float roundTime = Time.time - GameplayManager.RoundStartTime;
+        string timeFormat = ((int)roundTime / 3600) > 0 ? @"hh\:mm\:ss" : @"mm\:ss";
 
-            TimeSpan roundTimeSpan = TimeSpan.FromSeconds(roundTime);
-            roundTimeValueText.text = roundTimeSpan.ToString(timeFormat);
+        TimeSpan roundTimeSpan = TimeSpan.FromSeconds(roundTime);
+        roundTimeValueText.text = roundTimeSpan.ToString(timeFormat);
 
-            numberValueText.text = GameplayManager.CurrentNumber.ToString();
+        numberValueText.text = GameplayManager.CurrentNumber.ToString();
 
-            targetText.text = initialTargetText + $" (+/- { GameplayManager.TargetNumberMargin })";
-            targetValueText.text = GameplayManager.TargetNumber.ToString();
-        }
-        else
-        {
-            statisticsRightPanel.SetActive(false);
-        }
+        targetText.text = initialTargetText + $" (+/- { GameplayManager.TargetNumberMargin })";
+        targetValueText.text = GameplayManager.TargetNumber.ToString();
     }
 }

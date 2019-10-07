@@ -89850,9 +89850,12 @@ MonoBehaviour:
     min: 10
     max: 30
   stoneSpawnMoreThreshold: 10
+  targetNumber:
+    min: 50
+    max: 150
   targetMargin:
     min: 10
-    max: 50
+    max: 20
   minTargetMargin:
     min: 1
     max: 5

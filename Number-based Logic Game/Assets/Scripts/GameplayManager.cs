@@ -15,7 +15,7 @@ public class GameplayManager : MonoBehaviour
     public static GameplayManager Instance;
 
     public static int CurrentRound = 0;
-    public static int CurrentNumber = 0;
+    public static int CurrentNumber;
     public static int TargetNumber;
     public static int TargetNumberMargin;
     public static float RoundStartTime;
@@ -45,55 +45,50 @@ public class GameplayManager : MonoBehaviour
         else
         {
             Destroy(gameObject);
-            return;
         }
+    }
 
+    void Start()
+    {
         stonesList = new List<GameObject>();
+        NewRound();
     }
 
     void Update()
     {
-        switch (GameManager.State)
+        if (GameManager.GameOver)
         {
-            case GameState.NumericPuzzle:
-            break;
+            return;
+        }
 
-            case GameState.CollectingNumbers:
-                if (!levelGenerated)
-                {
-                    int stonesAmount = Random.Range(
-                        GameSettings.Instance.stoneSpawnAmount.min,
-                        GameSettings.Instance.stoneSpawnAmount.max
-                    );
-                    GenerateLevel(stonesAmount);
+        if (!levelGenerated)
+        {
+            int stonesAmount = Random.Range(
+                GameSettings.StoneSpawnAmount.min,
+                GameSettings.StoneSpawnAmount.max
+            );
 
-                    Instantiate(playerPrefab, playerSpawnPosition, Quaternion.identity);
+            GenerateLevel(stonesAmount);
+            Instantiate(playerPrefab, playerSpawnPosition, Quaternion.identity);
 
-                    CurrentRound++;
-                    RoundStartTime = Time.time;
-                    TargetNumberMargin = Random.Range(
-                        GameSettings.Instance.targetMargin.min,
-                        GameSettings.Instance.targetMargin.max
-                    );
-                }
-                else
-                {
-                    if (stonesList.Count < GameSettings.Instance.stoneSpawnMoreThreshold)
-                    {
-                        int stonesAmount = Random.Range(
-                            GameSettings.Instance.stoneSpawnAmount.min - GameSettings.Instance.stoneSpawnMoreThreshold,
-                            GameSettings.Instance.stoneSpawnAmount.max - GameSettings.Instance.stoneSpawnMoreThreshold
-                        );
-                        GenerateLevel(stonesAmount);
-                    }
-                }
-            break;
+            RoundStartTime = Time.time;
+        }
+        else
+        {
+            if (stonesList.Count < GameSettings.StoneSpawnMoreThreshold)
+            {
+                int stonesAmount = Random.Range(
+                    GameSettings.StoneSpawnAmount.min - GameSettings.StoneSpawnMoreThreshold,
+                    GameSettings.StoneSpawnAmount.max - GameSettings.StoneSpawnMoreThreshold
+                );
+                GenerateLevel(stonesAmount);
+            }
         }
     }
 
     public void ChangeCurrentNumber(NumberOperation operation, int number)
     {
-        if (GameManager.State != GameState.CollectingNumbers)
+        if (GameManager.GameOver)
         {
             return;
         }
@@ -119,14 +114,36 @@ public class GameplayManager : MonoBehaviour
 
         if (Mathf.Abs(TargetNumber - CurrentNumber) <= TargetNumberMargin)
         {
-            NewRound();
+            CompletedRound();
         }
     }
 
     private void NewRound()
     {
-        GameManager.State = GameState.CollectingNumbers;
+        TargetNumber = Random.Range(
+            GameSettings.TargetNumber.min,
+            GameSettings.TargetNumber.max
+        );
+        TargetNumberMargin = Random.Range(
+            GameSettings.TargetMargin.min,
+            GameSettings.TargetMargin.max
+        );
+
+        CurrentRound++;
+        CurrentNumber = 0;
+
         levelGenerated = false;
+    }
+
+    private void CompletedRound()
+    {
+        GameSettings.TargetNumber += GameSettings.TargetNumberIncrease;
+        GameSettings.TargetMargin -= GameSettings.TargetMarginDecrease;
+
+        GameSettings.TargetMargin.min = Mathf.Max(GameSettings.TargetMargin.min, GameSettings.MinTargetMargin.min);
+        GameSettings.TargetMargin.max = Mathf.Max(GameSettings.TargetMargin.max, GameSettings.MinTargetMargin.max);
+
+        NewRound();
     }
 
     private void GenerateLevel(int stonesAmount)
@@ -157,8 +174,8 @@ public class GameplayManager : MonoBehaviour
                     Stone stone = stoneGO.GetComponent<Stone>();
 
                     int randomNumber = Random.Range(
-                        GameSettings.Instance.stoneInitialNumberRange.min,
-                        GameSettings.Instance.stoneInitialNumberRange.max
+                        GameSettings.StoneInitialNumberRange.min,
+                        GameSettings.StoneInitialNumberRange.max
                     );
                     stone.initialNumber = randomNumber;
 
