@@ -90203,7 +90203,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioMixer: {fileID: 24100000, guid: b66612613dadbca409daf53cd8f56b56, type: 2}
-  masterGroup: {fileID: 24300002, guid: b66612613dadbca409daf53cd8f56b56, type: 2}
+  masterMixerGroup: {fileID: 0}
+  soundEffectsMixerGroup: {fileID: 0}
+  soundEffectsContainerName: Sound Effects
   fadeDuration: 1
   fadeCurve:
     serializedVersion: 2
@@ -90229,6 +90231,19 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  soundEffects:
+  - name: NewPuzzle
+    source: {fileID: 0}
+    soundEffectClips:
+    - clip: {fileID: 8300000, guid: d6efaaec4a182b64ebceb7ee39408bfd, type: 3}
+      volume: 1
+      pitch: 1
+  - name: GameOver
+    source: {fileID: 0}
+    soundEffectClips:
+    - clip: {fileID: 8300000, guid: 0199a15cf1841344e8f123e8e1274b93, type: 3}
+      volume: 1
+      pitch: 1
 --- !u!4 &1359602548
 Transform:
   m_ObjectHideFlags: 0

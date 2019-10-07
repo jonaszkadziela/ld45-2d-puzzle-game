@@ -9,8 +9,7 @@ public class ShopArea : MonoBehaviour
 
         if (player)
         {
-            AudioLayersManager.Instance.Mute("GameplayLoop");
-            AudioLayersManager.Instance.Mute("GameplayLoopLowEnergy");
+            AudioLayersManager.Instance.Reset();
             AudioLayersManager.Instance.Unmute("ShopLoop");
         }
     }
@@ -21,8 +20,8 @@ public class ShopArea : MonoBehaviour
 
         if (player)
         {
+            AudioLayersManager.Instance.Reset();
             AudioLayersManager.Instance.Unmute("GameplayLoop");
-            AudioLayersManager.Instance.Mute("ShopLoop");
 
             player.audioLayerEnabled = false;
         }

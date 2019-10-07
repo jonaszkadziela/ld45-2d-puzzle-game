@@ -164,6 +164,8 @@ public class GameplayManager : MonoBehaviour
 
         CurrentRound++;
         CurrentNumber = 0;
+
+        AudioManager.Instance.PlaySoundEffect("NewPuzzle");
     }
 
     private void CompletedRound()

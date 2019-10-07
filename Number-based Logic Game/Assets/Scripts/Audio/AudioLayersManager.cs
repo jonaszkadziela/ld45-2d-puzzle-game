@@ -33,7 +33,7 @@ public class AudioLayersManager : MonoBehaviour
         foreach (AudioLayer layer in audioLayers)
         {
             layer.source = audioLayersContainer.AddComponent<AudioSource>();
-            layer.source.outputAudioMixerGroup = AudioManager.Instance.masterGroup;
+            layer.source.outputAudioMixerGroup = AudioManager.Instance.masterMixerGroup;
 
             layer.source.loop = true;
             layer.source.mute = true;
@@ -45,13 +45,24 @@ public class AudioLayersManager : MonoBehaviour
         }
     }
 
+    public void Reset()
+    {
+        for (int i = 0; i < audioLayers.Length; i++)
+        {
+            if (!audioLayers[i].source.mute)
+            {
+                StartCoroutine(FadeOut(audioLayers[i]));
+            }
+        }
+    }
+
     public void Mute(string name)
     {
         AudioLayer layer = Array.Find(audioLayers, l => l.name == name);
 
         if (layer == null)
         {
-            Debug.LogWarning("Unable to find: " + name + " audio layer!");
+            Debug.LogWarning("Unable to find '" + name + "' audio layer!");
             return;
         }
 

@@ -20,6 +20,8 @@ public class GameManager : MonoBehaviour
 
     public void TriggerGameOver()
     {
+        AudioLayersManager.Instance.Reset();
+        AudioManager.Instance.PlaySoundEffect("GameOver");
         GameOver = true;
     }
 }

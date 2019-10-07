@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Audio;
 
@@ -7,10 +8,15 @@ public class AudioManager : MonoBehaviour
     public static AudioManager Instance;
 
     public AudioMixer audioMixer;
-    public AudioMixerGroup masterGroup;
+    public AudioMixerGroup masterMixerGroup;
+    public AudioMixerGroup soundEffectsMixerGroup;
+
+    public string soundEffectsContainerName = "Sound Effects";
 
     public float fadeDuration = 1f;
     public AnimationCurve fadeCurve;
+
+    public SoundEffect[] soundEffects;
 
     void Awake()
     {
@@ -25,6 +31,15 @@ public class AudioManager : MonoBehaviour
         }
 
         DontDestroyOnLoad(gameObject);
+
+        GameObject soundEffectsContainer = new GameObject(soundEffectsContainerName);
+        soundEffectsContainer.transform.parent = transform;
+
+        foreach (SoundEffect effect in soundEffects)
+        {
+            effect.source = soundEffectsContainer.AddComponent<AudioSource>();
+            effect.source.outputAudioMixerGroup = soundEffectsMixerGroup;
+        }
     }
 
     void Start()
@@ -41,6 +56,37 @@ public class AudioManager : MonoBehaviour
     public void AdjustMixerVolumes()
     {
         audioMixer.SetFloat("MasterVolume", RemapVolume(Settings.MasterVolume));
+    }
+
+    public void PlaySoundEffect(string name)
+    {
+        SoundEffect effect = Array.Find(soundEffects, s => s.name == name);
+
+        if (effect == null)
+        {
+            Debug.LogWarning("Unable to find '" + name + "' sound effect!");
+            return;
+        }
+
+        Clip randomClip = GetRandomClip(effect);
+
+        effect.source.clip = randomClip.clip;
+        effect.source.volume = randomClip.volume;
+        effect.source.pitch = randomClip.pitch;
+
+        effect.source.Play();
+    }
+
+    private Clip GetRandomClip(SoundEffect effect)
+    {
+        if (effect.soundEffectClips.Length > 0)
+        {
+            int randomIndex = UnityEngine.Random.Range(0, effect.soundEffectClips.Length);
+
+            return effect.soundEffectClips[randomIndex];
+        }
+
+        return null;
     }
 
     public void Mute()
