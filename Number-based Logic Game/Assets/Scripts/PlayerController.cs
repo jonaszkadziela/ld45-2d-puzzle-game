@@ -7,6 +7,8 @@ public class PlayerController : MonoBehaviour
     public int money;
     public float energy;
 
+    public float lowEnergyThreshold = 20f;
+    public bool audioLayerEnabled = false;
     public int slotsLength;
 
     public GameObject heldObject;
@@ -37,6 +39,31 @@ public class PlayerController : MonoBehaviour
         for (int i = 0; i < slotsLength; i++)
         {
             slots[i] = slotsContainer.GetChild(i);
+        }
+    }
+
+    void Update()
+    {
+        if (GameManager.GameOver)
+        {
+            return;
+        }
+
+        if (!audioLayerEnabled)
+        {
+            if (energy < lowEnergyThreshold)
+            {
+                AudioLayersManager.Instance.Unmute("GameplayLoopLowEnergy");
+                audioLayerEnabled = true;
+            }
+        }
+        else
+        {
+            if (energy >= lowEnergyThreshold)
+            {
+                AudioLayersManager.Instance.Mute("GameplayLoopLowEnergy");
+                audioLayerEnabled = false;
+            }
         }
     }
 

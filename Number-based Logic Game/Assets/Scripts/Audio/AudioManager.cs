@@ -31,8 +31,6 @@ public class AudioManager : MonoBehaviour
     {
         AdjustMixerVolumes();
         audioMixer.SetFloat("MasterVolume", RemapVolume(0f));
-
-        Unmute();
     }
 
     public static float RemapVolume(float value01)

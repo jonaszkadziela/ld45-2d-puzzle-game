@@ -3,23 +3,28 @@
 [RequireComponent(typeof(Collider2D))]
 public class ShopArea : MonoBehaviour
 {
-    private Collider2D col;
-
-    void Start()
+    void OnTriggerEnter2D(Collider2D other)
     {
-        col = GetComponent<Collider2D>();
+        PlayerController player = other.GetComponent<PlayerController>();
+
+        if (player)
+        {
+            AudioLayersManager.Instance.Mute("GameplayLoop");
+            AudioLayersManager.Instance.Mute("GameplayLoopLowEnergy");
+            AudioLayersManager.Instance.Unmute("ShopLoop");
+        }
     }
 
-    void OnTriggerStay2D(Collider2D other)
+    void OnTriggerExit2D(Collider2D other)
     {
-        if (col.bounds.Contains(other.bounds.min) && col.bounds.Contains(other.bounds.max))
-        {
-            PlayerController player = other.GetComponent<PlayerController>();
+        PlayerController player = other.GetComponent<PlayerController>();
 
-            if (player)
-            {
-                // TODO: Play shop music
-            }
+        if (player)
+        {
+            AudioLayersManager.Instance.Unmute("GameplayLoop");
+            AudioLayersManager.Instance.Mute("ShopLoop");
+
+            player.audioLayerEnabled = false;
         }
     }
 }

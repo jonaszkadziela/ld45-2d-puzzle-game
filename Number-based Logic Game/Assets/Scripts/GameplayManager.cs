@@ -77,6 +77,12 @@ public class GameplayManager : MonoBehaviour
             Instantiate(playerPrefab, playerSpawnPosition, Quaternion.identity);
 
             RoundStartTime = Time.time;
+
+            if (CurrentRound == 1)
+            {
+                AudioManager.Instance.Unmute();
+                AudioLayersManager.Instance.Unmute("GameplayLoop");
+            }
         }
         else
         {
