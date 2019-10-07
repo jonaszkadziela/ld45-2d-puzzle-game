@@ -6,6 +6,12 @@ public class GameplayManager : MonoBehaviour
 {
     public static GameplayManager Instance;
 
+    public static int CurrentRound = 0;
+    public static int CurrentNumber = 0;
+    public static int TargetNumber;
+    public static int TargetNumberMargin;
+    public static float RoundStartTime;
+
     public Tilemap groundTileMap;
     public RangeInt groundPlayAreaX;
     public RangeInt groundPlayAreaY;
@@ -49,6 +55,13 @@ public class GameplayManager : MonoBehaviour
                         GameSettings.Instance.stoneSpawnAmount.max
                     );
                     GenerateLevel(stonesAmount);
+
+                    CurrentRound++;
+                    RoundStartTime = Time.time;
+                    TargetNumberMargin = Random.Range(
+                        GameSettings.Instance.targetMargin.min,
+                        GameSettings.Instance.targetMargin.max
+                    );
                 }
                 else
                 {
