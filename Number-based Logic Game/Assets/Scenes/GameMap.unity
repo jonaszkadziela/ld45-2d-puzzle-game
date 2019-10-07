@@ -89778,6 +89778,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1021540597}
   - component: {fileID: 1021540600}
+  - component: {fileID: 1021540601}
   - component: {fileID: 1021540599}
   - component: {fileID: 1021540598}
   m_Layer: 0
@@ -89881,6 +89882,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d382c241892299743b85f83a61986cf2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1021540601
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1021540596}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e5d76cdb145fae46b8e8d9a053cbf70, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  masterVolume: 1
 --- !u!1 &1038130435
 GameObject:
   m_ObjectHideFlags: 0
@@ -90168,6 +90182,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1359602548}
   - component: {fileID: 1359602547}
+  - component: {fileID: 1359602549}
   m_Layer: 0
   m_Name: _Audio Manager_
   m_TagString: Untagged
@@ -90228,6 +90243,87 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1359602549
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1359602546}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 475a07e56daf6544e982b7d0a56deef0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fadeDuration: 1
+  fadeCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  audioLayersContainerName: Audio Layers
+  audioLayers:
+  - name: MainMenuIntro
+    source: {fileID: 0}
+    audioLayerClip:
+      clip: {fileID: 8300000, guid: 9e4e368155e3a5948b71fa9a23b93895, type: 3}
+      volume: 1
+      pitch: 1
+    isFading: 0
+  - name: MainMenuLoop
+    source: {fileID: 0}
+    audioLayerClip:
+      clip: {fileID: 8300000, guid: 52c0f6a6c6a536c409bf79928d724948, type: 3}
+      volume: 1
+      pitch: 1
+    isFading: 0
+  - name: GameplayIntro
+    source: {fileID: 0}
+    audioLayerClip:
+      clip: {fileID: 8300000, guid: 2a150d4c543f3bb49b4ba6a4d2846a89, type: 3}
+      volume: 1
+      pitch: 1
+    isFading: 0
+  - name: GameplayLoop
+    source: {fileID: 0}
+    audioLayerClip:
+      clip: {fileID: 8300000, guid: febd413f721fd274686b8d903fc2e54b, type: 3}
+      volume: 1
+      pitch: 1
+    isFading: 0
+  - name: GameplayLoopLowEnergy
+    source: {fileID: 0}
+    audioLayerClip:
+      clip: {fileID: 8300000, guid: 18cff6faa7cfd8545824bd92c0057139, type: 3}
+      volume: 1
+      pitch: 1
+    isFading: 0
+  - name: ShopLoop
+    source: {fileID: 0}
+    audioLayerClip:
+      clip: {fileID: 8300000, guid: e67285b4bf1fb0640a87977d8602c025, type: 3}
+      volume: 1
+      pitch: 1
+    isFading: 0
 --- !u!1 &1362444061
 GameObject:
   m_ObjectHideFlags: 0

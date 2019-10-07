@@ -31,6 +31,8 @@ public class AudioManager : MonoBehaviour
     {
         AdjustMixerVolumes();
         audioMixer.SetFloat("MasterVolume", RemapVolume(0f));
+
+        Unmute();
     }
 
     public static float RemapVolume(float value01)
@@ -74,7 +76,7 @@ public class AudioManager : MonoBehaviour
 
         while (time > 0f)
         {
-            time += Time.unscaledDeltaTime;
+            time -= Time.unscaledDeltaTime;
             float volume = fadeCurve.Evaluate(time / fadeDuration);
 
             audioMixer.SetFloat("MasterVolume", RemapVolume(Mathf.Clamp(volume, 0f, Settings.MasterVolume)));
