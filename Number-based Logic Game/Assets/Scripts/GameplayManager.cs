@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.Tilemaps;
 
 public class GameplayManager : MonoBehaviour
@@ -13,6 +14,9 @@ public class GameplayManager : MonoBehaviour
     public GameObject map;
     public GameObject stonePrefab;
 
+    public List<GameObject> stonesList;
+
+    private GameObject levelContainer;
     private bool levelGenerated;
 
     void Awake()
@@ -24,7 +28,10 @@ public class GameplayManager : MonoBehaviour
         else
         {
             Destroy(gameObject);
+            return;
         }
+
+        stonesList = new List<GameObject>();
     }
 
     void Update()
@@ -37,7 +44,22 @@ public class GameplayManager : MonoBehaviour
             case GameState.CollectingNumbers:
                 if (!levelGenerated)
                 {
-                    GenerateLevel();
+                    int stonesAmount = Random.Range(
+                        GameSettings.Instance.stoneSpawnAmount.min,
+                        GameSettings.Instance.stoneSpawnAmount.max
+                    );
+                    GenerateLevel(stonesAmount);
+                }
+                else
+                {
+                    if (stonesList.Count < GameSettings.Instance.stoneSpawnMoreThreshold)
+                    {
+                        int stonesAmount = Random.Range(
+                            GameSettings.Instance.stoneSpawnAmount.min - GameSettings.Instance.stoneSpawnMoreThreshold,
+                            GameSettings.Instance.stoneSpawnAmount.max - GameSettings.Instance.stoneSpawnMoreThreshold
+                        );
+                        GenerateLevel(stonesAmount);
+                    }
                 }
             break;
 
@@ -47,11 +69,13 @@ public class GameplayManager : MonoBehaviour
         }
     }
 
-    void GenerateLevel()
+    void GenerateLevel(int stonesAmount)
     {
-        int stonesAmount = Random.Range(GameSettings.Instance.stoneSpawnRate.min, GameSettings.Instance.stoneSpawnRate.max);
-        GameObject levelContainer = new GameObject("Level Elements");
-        levelContainer.transform.parent = map.transform;
+        if (!levelGenerated)
+        {
+            levelContainer = new GameObject("Level Elements");
+            levelContainer.transform.parent = map.transform;
+        }
 
         for (int i = 0; i < stonesAmount; i++)
         {
@@ -67,11 +91,17 @@ public class GameplayManager : MonoBehaviour
                 if (groundTileMap.GetTile(randomPosition) == tile)
                 {
                     GameObject stoneGO = Instantiate(stonePrefab, randomPosition, Quaternion.identity);
+                    stoneGO.transform.parent = levelContainer.transform;
+                    stonesList.Add(stoneGO);
+
                     Stone stone = stoneGO.GetComponent<Stone>();
 
-                    int randomNumber = Random.Range(GameSettings.Instance.stoneNumberRange.min, GameSettings.Instance.stoneNumberRange.max);
+                    int randomNumber = Random.Range(
+                        GameSettings.Instance.stoneInitialNumberRange.min,
+                        GameSettings.Instance.stoneInitialNumberRange.max
+                    );
                     stone.initialNumber = randomNumber;
-                    stoneGO.transform.parent = levelContainer.transform;
+
                     tileGenerated = true;
 
                     break;

@@ -9,8 +9,9 @@ public class GameSettings : MonoBehaviour
     public float initialEnergy = 100f;
 
     [Header("Gameplay Settings")]
-    public RangeInt stoneSpawnRate;
-    public RangeInt stoneNumberRange;
+    public RangeInt stoneSpawnAmount = new RangeInt(20, 40);
+    public RangeInt stoneInitialNumberRange = new RangeInt(10, 30);
+    public int stoneSpawnMoreThreshold = 10;
 
     void Awake()
     {

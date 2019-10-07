@@ -64,6 +64,7 @@ public class Stone : InteractiveObject
     private void OnDestroy()
     {
         // TODO: Show particles
+        GameplayManager.Instance.stonesList.Remove(gameObject);
     }
 
     public override void InteractionStart()
