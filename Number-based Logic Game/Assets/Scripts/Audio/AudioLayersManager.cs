@@ -33,7 +33,7 @@ public class AudioLayersManager : MonoBehaviour
         foreach (AudioLayer layer in audioLayers)
         {
             layer.source = audioLayersContainer.AddComponent<AudioSource>();
-            layer.source.outputAudioMixerGroup = AudioManager.Instance.masterMixerGroup;
+            layer.source.outputAudioMixerGroup = AudioManager.Instance.musicMixerGroup;
 
             layer.source.loop = true;
             layer.source.mute = true;

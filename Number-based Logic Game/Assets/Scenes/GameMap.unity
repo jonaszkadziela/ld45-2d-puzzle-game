@@ -91591,8 +91591,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioMixer: {fileID: 24100000, guid: b66612613dadbca409daf53cd8f56b56, type: 2}
-  masterMixerGroup: {fileID: 0}
-  soundEffectsMixerGroup: {fileID: 0}
+  musicMixerGroup: {fileID: 243751594663386634, guid: b66612613dadbca409daf53cd8f56b56,
+    type: 2}
+  soundEffectsMixerGroup: {fileID: 243707360124169646, guid: b66612613dadbca409daf53cd8f56b56,
+    type: 2}
   soundEffectsContainerName: Sound Effects
   fadeDuration: 1
   fadeCurve:

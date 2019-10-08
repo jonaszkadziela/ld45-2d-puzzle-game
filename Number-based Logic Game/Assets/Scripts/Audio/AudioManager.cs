@@ -8,7 +8,7 @@ public class AudioManager : MonoBehaviour
     public static AudioManager Instance;
 
     public AudioMixer audioMixer;
-    public AudioMixerGroup masterMixerGroup;
+    public AudioMixerGroup musicMixerGroup;
     public AudioMixerGroup soundEffectsMixerGroup;
 
     public string soundEffectsContainerName = "Sound Effects";
