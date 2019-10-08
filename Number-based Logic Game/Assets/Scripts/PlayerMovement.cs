@@ -5,6 +5,8 @@ public class PlayerMovement : MonoBehaviour
 {
     public float initialSpeed = 5f;
 
+    public Animator animator;
+
     private Rigidbody2D rb;
     private Vector2 movement;
     private float speed;
@@ -23,6 +25,10 @@ public class PlayerMovement : MonoBehaviour
     {
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
+
+        animator.SetFloat("Horizontal", movement.x);
+        animator.SetFloat("Vertical", movement.y);
+        animator.SetFloat("Speed", movement.sqrMagnitude);
     }
 
     void FixedUpdate()
