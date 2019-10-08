@@ -4,7 +4,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
 
-    public static bool GameOver = false;
+    public static bool GameOver;
 
     void Awake()
     {
@@ -15,7 +15,10 @@ public class GameManager : MonoBehaviour
         else
         {
             Destroy(gameObject);
+            return;
         }
+
+        GameOver = false;
     }
 
     public void TriggerGameOver()
@@ -23,5 +26,10 @@ public class GameManager : MonoBehaviour
         AudioLayersManager.Instance.Reset();
         AudioManager.Instance.PlaySoundEffect("GameOver");
         GameOver = true;
+    }
+
+    public void RestartGame()
+    {
+        SceneFade.Instance.FadeTo("GameMap");
     }
 }

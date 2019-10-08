@@ -80,7 +80,6 @@ public class GameplayManager : MonoBehaviour
 
             if (CurrentRound == 1)
             {
-                AudioManager.Instance.Unmute();
                 AudioLayersManager.Instance.Unmute("GameplayLoop");
             }
         }

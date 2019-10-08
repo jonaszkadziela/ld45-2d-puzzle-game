@@ -34,6 +34,6 @@ public class GameOverUI : MonoBehaviour
 
     public void Restart()
     {
-
+        GameManager.Instance.RestartGame();
     }
 }
