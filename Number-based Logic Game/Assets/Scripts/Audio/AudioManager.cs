@@ -77,7 +77,7 @@ public class AudioManager : MonoBehaviour
         effect.source.Play();
     }
 
-    private Clip GetRandomClip(SoundEffect effect)
+    public static Clip GetRandomClip(SoundEffect effect)
     {
         if (effect.soundEffectClips.Length > 0)
         {

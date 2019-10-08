@@ -9,20 +9,27 @@ public class Stone : InteractiveObject
     [HideInInspector]
     public int number;
     public float durability = 10f;
+    public bool regularStone = true;
+    [HideInInspector]
+    public bool destroyed = false;
 
     [Header("Current state")]
-    public bool isPickedUp = false;
+    public bool pickedUp = false;
     [HideInInspector]
-    public bool isPushed = false;
+    public bool pushed = false;
 
     private Rigidbody2D rb;
+    private AudioPlayer audioPlayer;
+
     private Transform slot;
     private Vector3 previousPosition;
     private float distanceMoved = 0f;
+    private bool pushSoundEffectPlaying = false;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        audioPlayer = GetComponent<AudioPlayer>();
 
         number = initialNumber;
         previousPosition = transform.position;
@@ -30,24 +37,43 @@ public class Stone : InteractiveObject
 
     void FixedUpdate()
     {
-        if (number > 0)
+        if (destroyed)
         {
-            if (isPickedUp && slot)
+            return;
+        }
+
+        if (pickedUp && slot)
+        {
+            if (Vector3.Distance(transform.position, slot.position) > 0.01f)
             {
-                if (Vector3.Distance(transform.position, slot.position) > 0.01f)
-                {
-                    transform.position = slot.position;
-                }
+                transform.position = slot.position;
             }
+        }
 
-            isPushed = false;
-            if (Vector3.Distance(transform.position, previousPosition) > 0.01f)
+        pushed = false;
+        if (Vector3.Distance(transform.position, previousPosition) > 0.01f)
+        {
+            distanceMoved += Vector3.Distance(transform.position, previousPosition);
+            DetermineCurrentNumber(distanceMoved);
+
+            pushed = true;
+            previousPosition = transform.position;
+        }
+
+        if (!pushSoundEffectPlaying)
+        {
+            if (pushed)
             {
-                distanceMoved += Vector3.Distance(transform.position, previousPosition);
-                DetermineCurrentNumber(distanceMoved);
-
-                isPushed = true;
-                previousPosition = transform.position;
+                audioPlayer.PlaySoundEffect("Push");
+                pushSoundEffectPlaying = true;
+            }
+        }
+        else
+        {
+            if (!pushed)
+            {
+                audioPlayer.StopSoundEffect("Push");
+                pushSoundEffectPlaying = false;
             }
         }
     }
@@ -58,33 +84,53 @@ public class Stone : InteractiveObject
 
         if (number <= 0)
         {
-            Destroy(gameObject);
+            DestroyStone();
         }
+    }
+
+    public void DestroyStone(bool delivered = false,  float time = 1f)
+    {
+        if (destroyed)
+        {
+            return;
+        }
+
+        string soundEffectName = delivered ? "Pop" : (regularStone ? "StoneBreak" : "BoulderBreak");
+
+        audioPlayer.StopSoundEffect("Push");
+        audioPlayer.PlaySoundEffect(soundEffectName);
+
+        Destroy(gameObject, time);
+        rb.constraints |= RigidbodyConstraints2D.FreezePosition;
+
+        destroyed = true;
+        pickedUp = false;
     }
 
     private void OnDestroy()
     {
-        if (GameplayManager.LevelGenerated)
-        {
-            // TODO: Show particles
-        }
         GameplayManager.Instance.stonesList.Remove(gameObject);
     }
 
     public override void InteractionStart()
     {
-        isPickedUp = true;
+        if (destroyed)
+        {
+            return;
+        }
+
+        pickedUp = true;
         slot = PlayerController.Instance.DetermineNearestSlot(transform.position);
     }
 
     public override void InteractionFinish()
     {
-        isPickedUp = false;
+        pickedUp = false;
     }
 
     void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.CompareTag("Player"))
+        if (other.gameObject.CompareTag("Player") && !destroyed)
         {
             rb.constraints &= ~RigidbodyConstraints2D.FreezePosition;
         }

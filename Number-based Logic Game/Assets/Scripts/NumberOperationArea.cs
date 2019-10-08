@@ -18,9 +18,9 @@ public class NumberOperationArea : MonoBehaviour
         {
             Stone stone = other.GetComponent<Stone>();
 
-            if (stone)
+            if (stone && !stone.destroyed)
             {
-                Destroy(stone.gameObject);
+                stone.DestroyStone(true);
                 GameplayManager.Instance.ChangeCurrentNumber(operation, stone.number);
             }
         }
