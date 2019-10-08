@@ -90894,6 +90894,7 @@ GameObject:
   - component: {fileID: 1088932803}
   - component: {fileID: 1088932802}
   - component: {fileID: 1088932801}
+  - component: {fileID: 1088932804}
   m_Layer: 5
   m_Name: Current Round
   m_TagString: Untagged
@@ -90980,6 +90981,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1088932799}
   m_CullTransparentMesh: 0
+--- !u!225 &1088932804
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1088932799}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &1096756465
 GameObject:
   m_ObjectHideFlags: 0
@@ -93049,6 +93062,8 @@ GameObject:
   - component: {fileID: 1672465782}
   - component: {fileID: 1672465784}
   - component: {fileID: 1672465783}
+  - component: {fileID: 1672465785}
+  - component: {fileID: 1672465786}
   m_Layer: 5
   m_Name: Game Over Panel
   m_TagString: Untagged
@@ -93111,6 +93126,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1672465781}
   m_CullTransparentMesh: 0
+--- !u!225 &1672465785
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1672465781}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
+--- !u!95 &1672465786
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1672465781}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 7a321585ee6abd24cbdd7f0f260c4e33, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1673483293
 GameObject:
   m_ObjectHideFlags: 0
@@ -93312,9 +93358,9 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 105, y: -30}
+  m_AnchoredPosition: {x: 190, y: 0}
   m_SizeDelta: {x: 170, y: 60}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: 1, y: 1}
 --- !u!114 &1707068478
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -93772,9 +93818,9 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 200, y: -46.66667}
+  m_AnchoredPosition: {x: 200, y: -126.66667}
   m_SizeDelta: {x: 400, y: 80}
-  m_Pivot: {x: 0.5, y: 1}
+  m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &1818122080
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -93929,9 +93975,9 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 295, y: -30}
+  m_AnchoredPosition: {x: 210, y: 0}
   m_SizeDelta: {x: 170, y: 60}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: 0, y: 1}
 --- !u!114 &1848875543
 MonoBehaviour:
   m_ObjectHideFlags: 0

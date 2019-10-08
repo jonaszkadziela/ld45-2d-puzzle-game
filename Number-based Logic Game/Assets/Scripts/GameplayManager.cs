@@ -14,7 +14,7 @@ public class GameplayManager : MonoBehaviour
 {
     public static GameplayManager Instance;
 
-    public static int CurrentRound = 0;
+    public static int CurrentRound;
     public static int CurrentNumber;
     public static int TargetNumber;
     public static int TargetNumberMargin;
@@ -57,6 +57,7 @@ public class GameplayManager : MonoBehaviour
         levelContainer = new GameObject("Level Elements");
         levelContainer.transform.parent = map.transform;
 
+        CurrentRound = 0;
         NewRound();
     }
 

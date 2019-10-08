@@ -351,7 +351,7 @@ RectTransform:
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: 0, y: 1}
 --- !u!114 &142416020
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -543,7 +543,7 @@ RectTransform:
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 80}
-  m_Pivot: {x: 0.5, y: 1}
+  m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &281643431
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -773,7 +773,7 @@ RectTransform:
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: 1, y: 1}
 --- !u!114 &593602028
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1376,6 +1376,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1156529235}
   - component: {fileID: 1156529236}
+  - component: {fileID: 1156529237}
   m_Layer: 5
   m_Name: Main Menu UI
   m_TagString: Untagged
@@ -1415,6 +1416,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ef18859ae3dffe4cac9fc17563ffcd0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!95 &1156529237
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1156529234}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 598da5a5baaf5c648a3066d9cddfda6a, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1822953566
 GameObject:
   m_ObjectHideFlags: 0
