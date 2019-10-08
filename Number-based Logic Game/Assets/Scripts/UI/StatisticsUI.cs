@@ -29,7 +29,7 @@ public class StatisticsUI : MonoBehaviour
         {
             statisticsLeftPanel.SetActive(true);
 
-            energyValueText.text = ((int)PlayerController.Instance.energy).ToString();
+            energyValueText.text = Mathf.RoundToInt(PlayerController.Instance.energy).ToString();
             moneyValueText.text = PlayerController.Instance.money.ToString();
         }
         else

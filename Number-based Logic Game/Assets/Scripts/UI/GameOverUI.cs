@@ -27,9 +27,9 @@ public class GameOverUI : MonoBehaviour
         }
     }
 
-    public void Quit()
+    public void Menu()
     {
-        GameManager.Instance.QuitGame();
+        SceneFade.Instance.FadeTo("MainMenu");
     }
 
     public void Restart()

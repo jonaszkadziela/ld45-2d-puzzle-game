@@ -23,6 +23,7 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
+        // TODO: Implement a proper Pause UI with quit button
         if (Input.GetButtonDown("Cancel"))
         {
             QuitGame();
