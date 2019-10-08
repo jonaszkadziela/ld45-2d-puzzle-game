@@ -9,10 +9,10 @@ public class GameSettings : MonoBehaviour
     [Header("Player Settings")]
     public int initialMoney = 0;
     public int moneyRewardDecreasePerMinute = 10;
-    public float initialEnergy = 100f;
+    public float initialEnergy = 50f;
     public float energyDecreaseSlowness = 10f;
     public RangeInt moneyRewardRange = new RangeInt(10, 50);
-    public RangeInt energyRewardRange = new RangeInt(20, 100);
+    public RangeInt energyRewardRange = new RangeInt(10, 50);
 
     [Header("Gameplay Settings")]
     public RangeInt stoneSpawnAmount = new RangeInt(20, 40);

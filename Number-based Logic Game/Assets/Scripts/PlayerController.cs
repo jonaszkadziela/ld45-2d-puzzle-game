@@ -6,8 +6,12 @@ public class PlayerController : MonoBehaviour
 
     public int money;
     public float energy;
+    public float initialEnergy;
+    [HideInInspector]
+    public float distanceMoved = 0f;
 
-    public float lowEnergyThreshold = 20f;
+    [Range(0.01f, 1f)]
+    public float lowEnergyThreshold = 0.2f;
     public bool audioLayerEnabled = false;
     public int slotsLength;
 
@@ -30,8 +34,9 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
-        energy = GameSettings.InitialEnergy;
         money = GameSettings.InitialMoney;
+        energy = GameSettings.InitialEnergy;
+        initialEnergy = GameSettings.InitialEnergy;        
 
         slotsLength = slotsContainer.childCount;
         slots = new Transform[slotsLength];
@@ -51,7 +56,7 @@ public class PlayerController : MonoBehaviour
 
         if (!audioLayerEnabled)
         {
-            if (energy < lowEnergyThreshold)
+            if (energy < GameSettings.InitialEnergy * lowEnergyThreshold)
             {
                 AudioLayersManager.Instance.Unmute("GameplayLoopLowEnergy");
                 audioLayerEnabled = true;
@@ -59,7 +64,7 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            if (energy >= lowEnergyThreshold)
+            if (energy >= GameSettings.InitialEnergy * lowEnergyThreshold)
             {
                 AudioLayersManager.Instance.Mute("GameplayLoopLowEnergy");
                 audioLayerEnabled = false;
@@ -86,9 +91,9 @@ public class PlayerController : MonoBehaviour
         return nearestSlot;
     }
 
-    public void DetermineCurrentEnergy(float distanceMoved)
+    public void DetermineCurrentEnergy()
     {
-        energy = GameSettings.InitialEnergy - distanceMoved / GameSettings.EnergyDecreaseSlowness;
+        energy = initialEnergy - distanceMoved / GameSettings.EnergyDecreaseSlowness;
 
         if (energy <= 0)
         {

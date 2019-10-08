@@ -3680,12 +3680,12 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 26.9
+  m_fontSize: 22
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
   m_fontSizeMin: 18
-  m_fontSizeMax: 30
+  m_fontSizeMax: 22
   m_fontStyle: 17
   m_textAlignment: 514
   m_characterSpacing: 0
@@ -4255,7 +4255,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 200, y: -523.3334}
-  m_SizeDelta: {x: 400, y: 60}
+  m_SizeDelta: {x: 320, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &766192654
 MonoBehaviour:
@@ -4270,8 +4270,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Padding:
-    m_Left: 20
-    m_Right: 20
+    m_Left: 0
+    m_Right: 0
     m_Top: 0
     m_Bottom: 0
   m_ChildAlignment: 4
@@ -90782,14 +90782,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   initialMoney: 0
   moneyRewardDecreasePerMinute: 10
-  initialEnergy: 100
+  initialEnergy: 50
   energyDecreaseSlowness: 10
   moneyRewardRange:
     min: 10
     max: 50
   energyRewardRange:
-    min: 20
-    max: 100
+    min: 10
+    max: 50
   stoneSpawnAmount:
     min: 20
     max: 40
@@ -90821,6 +90821,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d382c241892299743b85f83a61986cf2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameOverUI: {fileID: 1223305793}
 --- !u!1 &1038130435
 GameObject:
   m_ObjectHideFlags: 0
@@ -90921,7 +90922,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 200, y: -310}
-  m_SizeDelta: {x: 400, y: 140}
+  m_SizeDelta: {x: 320, y: 140}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1088932801
 MonoBehaviour:
@@ -90936,8 +90937,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Padding:
-    m_Left: 50
-    m_Right: 50
+    m_Left: 10
+    m_Right: 10
     m_Top: 10
     m_Bottom: 10
   m_ChildAlignment: 4
@@ -91310,7 +91311,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1223305792
 RectTransform:
   m_ObjectHideFlags: 0
@@ -91695,7 +91696,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 200, y: -90}
+  m_AnchoredPosition: {x: 160, y: -90}
   m_SizeDelta: {x: 300, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1373138029
@@ -92865,12 +92866,12 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 30
+  m_fontSize: 22
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
   m_fontSizeMin: 18
-  m_fontSizeMax: 30
+  m_fontSizeMax: 22
   m_fontStyle: 17
   m_textAlignment: 514
   m_characterSpacing: 0
@@ -93070,7 +93071,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1672465782
 RectTransform:
   m_ObjectHideFlags: 0
@@ -93358,8 +93359,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 190, y: 0}
-  m_SizeDelta: {x: 170, y: 60}
+  m_AnchoredPosition: {x: 150, y: 0}
+  m_SizeDelta: {x: 150, y: 60}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &1707068478
 MonoBehaviour:
@@ -93819,7 +93820,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 200, y: -126.66667}
-  m_SizeDelta: {x: 400, y: 80}
+  m_SizeDelta: {x: 320, y: 80}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &1818122080
 MonoBehaviour:
@@ -93867,7 +93868,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 53.7
+  m_fontSize: 49.9
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -93905,7 +93906,7 @@ MonoBehaviour:
   m_firstVisibleCharacter: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 10, y: 10, z: 10, w: 10}
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 1818122080}
     characterCount: 9
@@ -93975,8 +93976,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 210, y: 0}
-  m_SizeDelta: {x: 170, y: 60}
+  m_AnchoredPosition: {x: 170, y: 0}
+  m_SizeDelta: {x: 150, y: 60}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1848875543
 MonoBehaviour:
@@ -94352,8 +94353,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Padding:
-    m_Left: 0
-    m_Right: 0
+    m_Left: 40
+    m_Right: 40
     m_Top: 0
     m_Bottom: 0
   m_ChildAlignment: 4
@@ -94689,7 +94690,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 200, y: -30}
+  m_AnchoredPosition: {x: 160, y: -30}
   m_SizeDelta: {x: 300, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1951146977
@@ -95249,6 +95250,46 @@ PrefabInstance:
     - target: {fileID: 3482359067759134178, guid: 4a19b648d4ef6d44d82f740ad0d64cf5,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3482359067759134181, guid: 4a19b648d4ef6d44d82f740ad0d64cf5,
+        type: 3}
+      propertyPath: fadeCurve.m_Curve.Array.data[0].inSlope
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3482359067759134181, guid: 4a19b648d4ef6d44d82f740ad0d64cf5,
+        type: 3}
+      propertyPath: fadeCurve.m_Curve.Array.data[0].outSlope
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3482359067759134181, guid: 4a19b648d4ef6d44d82f740ad0d64cf5,
+        type: 3}
+      propertyPath: fadeCurve.m_Curve.Array.data[1].inSlope
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3482359067759134181, guid: 4a19b648d4ef6d44d82f740ad0d64cf5,
+        type: 3}
+      propertyPath: fadeCurve.m_Curve.Array.data[1].outSlope
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3482359067759134179, guid: 4a19b648d4ef6d44d82f740ad0d64cf5,
+        type: 3}
+      propertyPath: fadeCurve.m_Curve.Array.data[0].inSlope
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3482359067759134179, guid: 4a19b648d4ef6d44d82f740ad0d64cf5,
+        type: 3}
+      propertyPath: fadeCurve.m_Curve.Array.data[0].outSlope
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3482359067759134179, guid: 4a19b648d4ef6d44d82f740ad0d64cf5,
+        type: 3}
+      propertyPath: fadeCurve.m_Curve.Array.data[1].inSlope
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3482359067759134179, guid: 4a19b648d4ef6d44d82f740ad0d64cf5,
+        type: 3}
+      propertyPath: fadeCurve.m_Curve.Array.data[1].outSlope
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

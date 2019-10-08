@@ -12,7 +12,6 @@ public class PlayerMovement : MonoBehaviour
     private float speed;
 
     private Vector3 previousPosition;
-    private float distanceMoved = 0f;
 
     void Start()
     {
@@ -55,8 +54,8 @@ public class PlayerMovement : MonoBehaviour
 
         if (Vector3.Distance(transform.position, previousPosition) > 0.01f)
         {
-            distanceMoved += Vector3.Distance(transform.position, previousPosition);
-            PlayerController.Instance.DetermineCurrentEnergy(distanceMoved);
+            PlayerController.Instance.distanceMoved += Vector3.Distance(transform.position, previousPosition);
+            PlayerController.Instance.DetermineCurrentEnergy();
 
             previousPosition = transform.position;
         }

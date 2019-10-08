@@ -20,6 +20,8 @@ public class ShopArea : MonoBehaviour
 
         if (player)
         {
+            CancelInvoke();
+
             AudioLayersManager.Instance.Reset();
             AudioLayersManager.Instance.Unmute("GameplayLoop");
 

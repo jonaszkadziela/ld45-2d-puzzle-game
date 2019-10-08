@@ -76,7 +76,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &4493688082913961327
@@ -155,7 +155,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &4493688082978196427
@@ -234,7 +234,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &4493688083180307761
@@ -347,7 +347,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &4493688083938513285
@@ -632,7 +632,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   money: 0
   energy: 0
-  lowEnergyThreshold: 20
+  lowEnergyThreshold: 0.2
   audioLayerEnabled: 0
   slotsLength: 0
   heldObject: {fileID: 0}
@@ -710,12 +710,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6281006976548166013, guid: 58a450c07a332154c91d8e686003be77,
+    - target: {fileID: 6281006976155332814, guid: 58a450c07a332154c91d8e686003be77,
         type: 3}
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
-    - target: {fileID: 6281006976155332814, guid: 58a450c07a332154c91d8e686003be77,
+    - target: {fileID: 6281006976548166013, guid: 58a450c07a332154c91d8e686003be77,
         type: 3}
       propertyPath: m_Layer
       value: 8

@@ -6,6 +6,8 @@ public class GameManager : MonoBehaviour
 
     public static bool GameOver;
 
+    public GameOverUI gameOverUI;
+
     void Awake()
     {
         if (!Instance)
@@ -34,7 +36,9 @@ public class GameManager : MonoBehaviour
     {
         AudioLayersManager.Instance.Reset();
         AudioManager.Instance.PlaySoundEffect("GameOver");
+
         GameOver = true;
+        gameOverUI.Show();
     }
 
     public void QuitGame()

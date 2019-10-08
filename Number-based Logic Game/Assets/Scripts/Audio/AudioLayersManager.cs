@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using ExtensionMethods;
 
 public class AudioLayersManager : MonoBehaviour
@@ -13,6 +14,8 @@ public class AudioLayersManager : MonoBehaviour
     public string audioLayersContainerName = "Audio Layers";
     public AudioLayer[] audioLayers;
 
+    private bool initializedAudioLayers = false;
+
     void Awake()
     {
         if (!Instance)
@@ -23,6 +26,11 @@ public class AudioLayersManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+
+    void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
     void Start()
@@ -43,6 +51,9 @@ public class AudioLayersManager : MonoBehaviour
             layer.source.pitch = layer.audioLayerClip.pitch;
             layer.source.Play();
         }
+
+        UnmuteSceneLayer();
+        initializedAudioLayers = true;
     }
 
     public void Reset()
@@ -80,6 +91,31 @@ public class AudioLayersManager : MonoBehaviour
         }
 
         StartCoroutine(FadeIn(layer));
+    }
+
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        if (initializedAudioLayers)
+        {
+            Reset();
+            UnmuteSceneLayer(scene.name);
+        }
+    }
+
+    private void UnmuteSceneLayer(string sceneName = "")
+    {
+        sceneName = sceneName == "" ? SceneManager.GetActiveScene().name : sceneName;
+
+        switch (sceneName)
+        {
+            case "MainMenu":
+                Unmute("MainMenuLoop");
+            break;
+
+            case "Game":
+                Unmute("GameplayLoop");
+            break;
+        }
     }
 
     private IEnumerator FadeIn(AudioLayer layer)

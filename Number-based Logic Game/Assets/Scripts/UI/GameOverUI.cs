@@ -8,23 +8,12 @@ public class GameOverUI : MonoBehaviour
 
     public TextMeshProUGUI roundsCompletedValue;
 
-    void Update()
+    public void Show()
     {
-        if (GameManager.GameOver)
-        {
-            if (!gameOverUI.activeSelf)
-            {
-                statisticsUI.SetActive(false);
-                gameOverUI.SetActive(true);
+        statisticsUI.SetActive(false);
+        gameOverUI.SetActive(true);
 
-                roundsCompletedValue.text = GameplayManager.CurrentRound.ToString();
-            }
-        }
-        else
-        {
-            statisticsUI.SetActive(true);
-            gameOverUI.SetActive(false);
-        }
+        roundsCompletedValue.text = GameplayManager.CurrentRound.ToString();
     }
 
     public void Menu()

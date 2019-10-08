@@ -79,11 +79,6 @@ public class GameplayManager : MonoBehaviour
             Instantiate(playerPrefab, playerSpawnPosition, Quaternion.identity);
 
             RoundStartTime = Time.time;
-
-            if (CurrentRound == 1)
-            {
-                AudioLayersManager.Instance.Unmute("GameplayLoop");
-            }
         }
         else
         {
@@ -134,12 +129,14 @@ public class GameplayManager : MonoBehaviour
     {
         float roundTime = Time.time - RoundStartTime;
         int onTargetFactor = 1 - Mathf.Abs(TargetNumber - CurrentNumber) / TargetNumberMargin;
+        PlayerController.Instance.initialEnergy = PlayerController.Instance.energy;
+        PlayerController.Instance.distanceMoved = 0f;
 
         PlayerController.Instance.money += Mathf.Max(
             GameSettings.MoneyRewardRange.min,
             GameSettings.MoneyRewardRange.max - GameSettings.MoneyRewardDecreasePerMinute * (int)roundTime / 60
         );
-        PlayerController.Instance.energy += Mathf.Max(
+        PlayerController.Instance.initialEnergy += Mathf.Max(
             GameSettings.EnergyRewardRange.min,
             GameSettings.EnergyRewardRange.max * onTargetFactor
         );
@@ -166,7 +163,11 @@ public class GameplayManager : MonoBehaviour
         CurrentRound++;
         CurrentNumber = 0;
 
-        AudioManager.Instance.PlaySoundEffect("NewPuzzle");
+        if (CurrentRound > 1)
+        {
+            AudioManager.Instance.PlaySoundEffect("NewPuzzle");
+            AudioLayersManager.Instance.Unmute("GameplayLoop");
+        }
     }
 
     private void CompletedRound()
