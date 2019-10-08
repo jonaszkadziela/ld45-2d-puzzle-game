@@ -49,6 +49,7 @@ public class SceneFade : MonoBehaviour
         }
 
         AudioManager.Instance.Mute();
+        AudioLayersManager.Instance.Reset();
         StartCoroutine(FadeOutAnimation());
     }
 

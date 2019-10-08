@@ -2,10 +2,15 @@
 
 public class MainMenuUI : MonoBehaviour
 {
-    void Start()
+    private bool musicIsPlaying = false;
+
+    void Update()
     {
-        AudioManager.Instance.Unmute();
-        AudioLayersManager.Instance.Unmute("MainMenuLoop");
+        if (AudioLayersManager.Instance && !musicIsPlaying)
+        {
+            AudioLayersManager.Instance.Unmute("MainMenuLoop");
+            musicIsPlaying = true;
+        }
     }
 
     public void Play()
