@@ -18,6 +18,7 @@ public class GameSettings : MonoBehaviour
     public RangeInt stoneSpawnAmount = new RangeInt(20, 40);
     public RangeInt stoneInitialNumberRange = new RangeInt(5, 30);
     public int stoneSpawnMoreThreshold = 10;
+    public float boulderPercentage = 0.2f;
 
     public RangeInt targetNumberRange = new RangeInt(50, 150);
     public RangeInt targetMarginRange = new RangeInt(10, 20);
@@ -40,6 +41,7 @@ public class GameSettings : MonoBehaviour
     public static RangeInt StoneSpawnAmount;
     public static RangeInt StoneInitialNumberRange;
     public static int StoneSpawnMoreThreshold;
+    public static float BoulderPercentage;
 
     public static RangeInt TargetNumberRange;
     public static RangeInt TargetMarginRange;
@@ -60,6 +62,7 @@ public class GameSettings : MonoBehaviour
         StoneSpawnAmount = stoneSpawnAmount;
         StoneInitialNumberRange = stoneInitialNumberRange;
         StoneSpawnMoreThreshold = stoneSpawnMoreThreshold;
+        BoulderPercentage = boulderPercentage;
 
         TargetNumberRange = targetNumberRange;
         TargetMarginRange = targetMarginRange;

@@ -30,7 +30,8 @@ public class GameplayManager : MonoBehaviour
     public Vector2 playerSpawnPosition;
 
     public GameObject map;
-    public GameObject stonePrefab;
+    public GameObject sandStonePrefab;
+    public GameObject boulderPrefab;
     public GameObject playerPrefab;
 
     public List<GameObject> stonesList;
@@ -200,7 +201,14 @@ public class GameplayManager : MonoBehaviour
             {
                 if (groundTileMap.GetTile(randomPosition) == tile)
                 {
-                    GameObject stoneGO = Instantiate(stonePrefab, randomPosition, Quaternion.identity);
+                    GameObject prefab = sandStonePrefab;
+
+                    if (GameSettings.BoulderPercentage >= Random.Range(0f, 1f))
+                    {
+                        prefab = boulderPrefab;
+                    }
+
+                    GameObject stoneGO = Instantiate(prefab, randomPosition, Quaternion.identity);
                     stoneGO.transform.parent = levelContainer.transform;
                     stonesList.Add(stoneGO);
 
