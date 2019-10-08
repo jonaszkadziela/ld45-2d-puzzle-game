@@ -7,7 +7,7 @@ public class AudioLayersManager : MonoBehaviour
 {
     public static AudioLayersManager Instance;
 
-    public float fadeDuration = 1f;
+    public float fadeDuration = 2f;
     public AnimationCurve fadeCurve;
 
     public string audioLayersContainerName = "Audio Layers";

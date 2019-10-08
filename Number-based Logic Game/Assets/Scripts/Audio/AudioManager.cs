@@ -13,7 +13,7 @@ public class AudioManager : MonoBehaviour
 
     public string soundEffectsContainerName = "Sound Effects";
 
-    public float fadeDuration = 1f;
+    public float fadeDuration = 2f;
     public AnimationCurve fadeCurve;
 
     public SoundEffect[] soundEffects;

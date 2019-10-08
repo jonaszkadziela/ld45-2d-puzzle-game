@@ -42,11 +42,6 @@ public class GameManager : MonoBehaviour
         Invoke("ApplicationQuit", SceneFade.Instance.fadeDuration);
     }
 
-    public void RestartGame()
-    {
-        SceneFade.Instance.FadeTo("GameMap");
-    }
-
     private void ApplicationQuit()
     {
         Application.Quit();

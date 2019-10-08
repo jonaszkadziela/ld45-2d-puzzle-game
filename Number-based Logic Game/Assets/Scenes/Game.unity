@@ -90715,7 +90715,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1021540597}
   - component: {fileID: 1021540600}
-  - component: {fileID: 1021540601}
   - component: {fileID: 1021540599}
   - component: {fileID: 1021540598}
   m_Layer: 0
@@ -90822,19 +90821,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d382c241892299743b85f83a61986cf2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1021540601
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1021540596}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e5d76cdb145fae46b8e8d9a053cbf70, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  masterVolume: 1
 --- !u!1 &1038130435
 GameObject:
   m_ObjectHideFlags: 0
@@ -91563,165 +91549,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1331862114}
   m_CullTransparentMesh: 0
---- !u!1 &1359602546
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1359602548}
-  - component: {fileID: 1359602547}
-  - component: {fileID: 1359602549}
-  m_Layer: 0
-  m_Name: _Audio Manager_
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1359602547
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1359602546}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9e530baed4161d94f90fc984d2a3eaac, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  audioMixer: {fileID: 24100000, guid: b66612613dadbca409daf53cd8f56b56, type: 2}
-  musicMixerGroup: {fileID: 243751594663386634, guid: b66612613dadbca409daf53cd8f56b56,
-    type: 2}
-  soundEffectsMixerGroup: {fileID: 243707360124169646, guid: b66612613dadbca409daf53cd8f56b56,
-    type: 2}
-  soundEffectsContainerName: Sound Effects
-  fadeDuration: 1
-  fadeCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 2
-      outSlope: 2
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  soundEffects:
-  - source: {fileID: 0}
-    name: NewPuzzle
-    pitchVariationRange: 0
-    loop: 0
-    soundEffectClips:
-    - clip: {fileID: 8300000, guid: d6efaaec4a182b64ebceb7ee39408bfd, type: 3}
-      volume: 1
-      pitch: 1
-  - source: {fileID: 0}
-    name: GameOver
-    pitchVariationRange: 0
-    loop: 0
-    soundEffectClips:
-    - clip: {fileID: 8300000, guid: 0199a15cf1841344e8f123e8e1274b93, type: 3}
-      volume: 1
-      pitch: 1
---- !u!4 &1359602548
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1359602546}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1359602549
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1359602546}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 475a07e56daf6544e982b7d0a56deef0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  fadeDuration: 1
-  fadeCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 2
-      outSlope: 2
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  audioLayersContainerName: Audio Layers
-  audioLayers:
-  - name: MainMenuLoop
-    source: {fileID: 0}
-    audioLayerClip:
-      clip: {fileID: 8300000, guid: 52c0f6a6c6a536c409bf79928d724948, type: 3}
-      volume: 1
-      pitch: 1
-    isFading: 0
-  - name: GameplayLoop
-    source: {fileID: 0}
-    audioLayerClip:
-      clip: {fileID: 8300000, guid: febd413f721fd274686b8d903fc2e54b, type: 3}
-      volume: 1
-      pitch: 1
-    isFading: 0
-  - name: GameplayLoopLowEnergy
-    source: {fileID: 0}
-    audioLayerClip:
-      clip: {fileID: 8300000, guid: 18cff6faa7cfd8545824bd92c0057139, type: 3}
-      volume: 1
-      pitch: 1
-    isFading: 0
-  - name: ShopLoop
-    source: {fileID: 0}
-    audioLayerClip:
-      clip: {fileID: 8300000, guid: e67285b4bf1fb0640a87977d8602c025, type: 3}
-      volume: 1
-      pitch: 1
-    isFading: 0
 --- !u!1 &1362444061
 GameObject:
   m_ObjectHideFlags: 0
@@ -95311,3 +95138,72 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8699a254136c4704ebcb378c1173d788, type: 3}
+--- !u!1001 &3482359069118637718
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3482359067759134180, guid: 4a19b648d4ef6d44d82f740ad0d64cf5,
+        type: 3}
+      propertyPath: m_Name
+      value: _Audio Manager_
+      objectReference: {fileID: 0}
+    - target: {fileID: 3482359067759134178, guid: 4a19b648d4ef6d44d82f740ad0d64cf5,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3482359067759134178, guid: 4a19b648d4ef6d44d82f740ad0d64cf5,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3482359067759134178, guid: 4a19b648d4ef6d44d82f740ad0d64cf5,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3482359067759134178, guid: 4a19b648d4ef6d44d82f740ad0d64cf5,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3482359067759134178, guid: 4a19b648d4ef6d44d82f740ad0d64cf5,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3482359067759134178, guid: 4a19b648d4ef6d44d82f740ad0d64cf5,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3482359067759134178, guid: 4a19b648d4ef6d44d82f740ad0d64cf5,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3482359067759134178, guid: 4a19b648d4ef6d44d82f740ad0d64cf5,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3482359067759134178, guid: 4a19b648d4ef6d44d82f740ad0d64cf5,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3482359067759134178, guid: 4a19b648d4ef6d44d82f740ad0d64cf5,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3482359067759134178, guid: 4a19b648d4ef6d44d82f740ad0d64cf5,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 4a19b648d4ef6d44d82f740ad0d64cf5, type: 3}
