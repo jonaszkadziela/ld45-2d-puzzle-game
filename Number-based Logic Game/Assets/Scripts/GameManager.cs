@@ -21,6 +21,14 @@ public class GameManager : MonoBehaviour
         GameOver = false;
     }
 
+    void Update()
+    {
+        if (Input.GetButtonDown("Cancel"))
+        {
+            QuitGame();
+        }
+    }
+
     public void TriggerGameOver()
     {
         AudioLayersManager.Instance.Reset();
@@ -28,8 +36,19 @@ public class GameManager : MonoBehaviour
         GameOver = true;
     }
 
+    public void QuitGame()
+    {
+        SceneFade.Instance.FadeOut();
+        Invoke("ApplicationQuit", SceneFade.Instance.fadeDuration);
+    }
+
     public void RestartGame()
     {
         SceneFade.Instance.FadeTo("GameMap");
+    }
+
+    private void ApplicationQuit()
+    {
+        Application.Quit();
     }
 }

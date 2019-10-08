@@ -29,7 +29,7 @@ public class GameOverUI : MonoBehaviour
 
     public void Quit()
     {
-        Application.Quit();
+        GameManager.Instance.QuitGame();
     }
 
     public void Restart()
