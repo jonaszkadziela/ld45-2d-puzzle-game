@@ -16,12 +16,12 @@ public class NumberOperationArea : MonoBehaviour
     {
         if (col.bounds.Contains(other.bounds.min) && col.bounds.Contains(other.bounds.max))
         {
-            Stone stone = other.GetComponent<Stone>();
+            Rock rock = other.GetComponent<Rock>();
 
-            if (stone && !stone.destroyed)
+            if (rock && !rock.destroyed)
             {
-                stone.DestroyStone(true);
-                GameplayManager.Instance.ChangeCurrentNumber(operation, stone.number);
+                rock.DestroyRock(true);
+                GameplayManager.Instance.ChangeCurrentNumber(operation, rock.number);
             }
         }
     }

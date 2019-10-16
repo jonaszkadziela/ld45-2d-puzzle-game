@@ -14,12 +14,11 @@ public class GameplayManager : MonoBehaviour
 {
     public static GameplayManager Instance;
 
+    public static float RoundStartTime;
     public static int CurrentRound;
     public static int CurrentNumber;
     public static int TargetNumber;
     public static int TargetNumberMargin;
-    public static float RoundStartTime;
-
     public static bool LevelGenerated;
 
     public Tilemap groundTileMap;
@@ -28,13 +27,14 @@ public class GameplayManager : MonoBehaviour
     public Tile[] safeTiles;
 
     public Vector2 playerSpawnPosition;
+    public GameObject playerPrefab;
+    public GameObject playerStatisticsUI;
 
     public GameObject map;
-    public GameObject sandStonePrefab;
-    public GameObject boulderPrefab;
-    public GameObject playerPrefab;
+    public GameObject sandstonePrefab;
+    public GameObject granitePrefab;
 
-    public List<GameObject> stonesList;
+    [HideInInspector] public List<GameObject> rocksList;
 
     private GameObject levelContainer;
 
@@ -52,13 +52,15 @@ public class GameplayManager : MonoBehaviour
 
     void Start()
     {
-        stonesList = new List<GameObject>();
+        rocksList = new List<GameObject>();
 
         levelContainer = new GameObject("Level Elements");
         levelContainer.transform.parent = map.transform;
 
         CurrentRound = 0;
         NewRound();
+
+        InitializePlayer();
     }
 
     void Update()
@@ -70,25 +72,24 @@ public class GameplayManager : MonoBehaviour
 
         if (!LevelGenerated)
         {
-            int stonesAmount = Random.Range(
-                GameSettings.StoneSpawnAmount.min,
-                GameSettings.StoneSpawnAmount.max
+            int rocksAmount = Random.Range(
+                GameSettings.RockSpawnAmount.min,
+                GameSettings.RockSpawnAmount.max
             );
 
-            GenerateLevel(stonesAmount);
-            Instantiate(playerPrefab, playerSpawnPosition, Quaternion.identity);
+            GenerateLevel(rocksAmount);
 
             RoundStartTime = Time.time;
         }
         else
         {
-            if (stonesList.Count < GameSettings.StoneSpawnMoreThreshold)
+            if (rocksList.Count < GameSettings.RockSpawnMoreThreshold)
             {
-                int stonesAmount = Random.Range(
-                    GameSettings.StoneSpawnAmount.min - GameSettings.StoneSpawnMoreThreshold,
-                    GameSettings.StoneSpawnAmount.max - GameSettings.StoneSpawnMoreThreshold
+                int rocksAmount = Random.Range(
+                    GameSettings.RockSpawnAmount.min - GameSettings.RockSpawnMoreThreshold,
+                    GameSettings.RockSpawnAmount.max - GameSettings.RockSpawnMoreThreshold
                 );
-                GenerateLevel(stonesAmount);
+                GenerateLevel(rocksAmount);
             }
         }
     }
@@ -129,6 +130,7 @@ public class GameplayManager : MonoBehaviour
     {
         float roundTime = Time.time - RoundStartTime;
         int onTargetFactor = 1 - Mathf.Abs(TargetNumber - CurrentNumber) / TargetNumberMargin;
+
         PlayerController.Instance.initialEnergy = PlayerController.Instance.energy;
         PlayerController.Instance.distanceMoved = 0f;
 
@@ -146,9 +148,9 @@ public class GameplayManager : MonoBehaviour
     {
         LevelGenerated = false;
 
-        foreach (GameObject stone in stonesList)
+        foreach (GameObject rock in rocksList)
         {
-            Destroy(stone);
+            Destroy(rock);
         }
 
         TargetNumber = Random.Range(
@@ -165,8 +167,8 @@ public class GameplayManager : MonoBehaviour
 
         if (CurrentRound > 1)
         {
-            AudioManager.Instance.PlaySoundEffect("NewPuzzle");
-            AudioLayersManager.Instance.Unmute("GameplayLoop");
+            AudioManager.Instance.PlaySoundEffect("Puzzle-New");
+            AudioLayersManager.Instance.Unmute("Gameplay-Loop");
         }
     }
 
@@ -188,9 +190,15 @@ public class GameplayManager : MonoBehaviour
         NewRound();
     }
 
-    private void GenerateLevel(int stonesAmount)
+    private void InitializePlayer()
     {
-        for (int i = 0; i < stonesAmount; i++)
+        Instantiate(playerPrefab, playerSpawnPosition, Quaternion.identity);
+        playerStatisticsUI.SetActive(true);
+    }
+
+    private void GenerateLevel(int rocksAmount)
+    {
+        for (int i = 0; i < rocksAmount; i++)
         {
             bool tileGenerated = false;
 
@@ -203,24 +211,16 @@ public class GameplayManager : MonoBehaviour
             {
                 if (groundTileMap.GetTile(randomPosition) == tile)
                 {
-                    GameObject prefab = sandStonePrefab;
+                    GameObject prefab = sandstonePrefab;
 
-                    if (GameSettings.BoulderPercentage >= Random.Range(0f, 1f))
+                    if (GameSettings.GranitePercentage >= Random.Range(0f, 1f))
                     {
-                        prefab = boulderPrefab;
+                        prefab = granitePrefab;
                     }
 
-                    GameObject stoneGO = Instantiate(prefab, randomPosition, Quaternion.identity);
-                    stoneGO.transform.parent = levelContainer.transform;
-                    stonesList.Add(stoneGO);
-
-                    Stone stone = stoneGO.GetComponent<Stone>();
-
-                    int randomNumber = Random.Range(
-                        GameSettings.StoneInitialNumberRange.min,
-                        GameSettings.StoneInitialNumberRange.max
-                    );
-                    stone.initialNumber = randomNumber;
+                    GameObject rockGO = Instantiate(prefab, randomPosition, Quaternion.identity);
+                    rockGO.transform.parent = levelContainer.transform;
+                    rocksList.Add(rockGO);
 
                     tileGenerated = true;
 

@@ -3,11 +3,9 @@
 [System.Serializable]
 public class SoundEffect
 {
-    [HideInInspector]
-    public AudioSource source;
     public string name;
-    [Range(0f, 1f)]
-    public float pitchVariationRange = 0f;
     public bool loop = false;
+    [Range(0f, 1f)] public float pitchVariationRange = 0f;
     public Clip[] soundEffectClips;
+    [HideInInspector] public AudioSource source;
 }

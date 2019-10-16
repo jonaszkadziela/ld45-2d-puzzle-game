@@ -1,35 +1,42 @@
 ﻿using UnityEngine;
 
+public enum RockType
+{
+    Sandstone,
+    Granite,
+};
+
 [RequireComponent(typeof(Rigidbody2D))]
-public class Stone : InteractiveObject
+public class Rock : InteractiveObject
 {
     [Header("Statistics")]
-    [HideInInspector]
-    public int initialNumber;
-    [HideInInspector]
-    public int number;
-    public float durability = 10f;
-    public bool regularStone = true;
-    [HideInInspector]
-    public bool destroyed = false;
+    public RockType rockType = RockType.Sandstone;
+    public float durability = 5f;
+    [HideInInspector] public int number;
+    [HideInInspector] public bool destroyed = false;
 
     [Header("Current state")]
     public bool pickedUp = false;
-    [HideInInspector]
-    public bool pushed = false;
 
     private Rigidbody2D rb;
-    private AudioPlayer audioPlayer;
-
     private Transform slot;
+    private AudioPlayer audioPlayer;
     private Vector3 previousPosition;
+
     private float distanceMoved = 0f;
+    private int initialNumber;
+    private bool pushed = false;
     private bool pushSoundEffectPlaying = false;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         audioPlayer = GetComponent<AudioPlayer>();
+
+        initialNumber = Random.Range(
+            GameSettings.RockInitialNumberRange.min,
+            GameSettings.RockInitialNumberRange.max
+        );
 
         number = initialNumber;
         previousPosition = transform.position;
@@ -44,14 +51,14 @@ public class Stone : InteractiveObject
 
         if (pickedUp && slot)
         {
-            if (Vector3.Distance(transform.position, slot.position) > 0.01f)
+            if (Vector3.Distance(transform.position, slot.position) > GameSettings.MovementThreshold)
             {
                 transform.position = slot.position;
             }
         }
 
         pushed = false;
-        if (Vector3.Distance(transform.position, previousPosition) > 0.01f)
+        if (Vector3.Distance(transform.position, previousPosition) > GameSettings.MovementThreshold)
         {
             distanceMoved += Vector3.Distance(transform.position, previousPosition);
             DetermineCurrentNumber(distanceMoved);
@@ -84,23 +91,23 @@ public class Stone : InteractiveObject
 
         if (number <= 0)
         {
-            DestroyStone();
+            DestroyRock();
         }
     }
 
-    public void DestroyStone(bool delivered = false,  float time = 1f)
+    public void DestroyRock(bool delivered = false, float delay = 1f)
     {
         if (destroyed)
         {
             return;
         }
 
-        string soundEffectName = delivered ? "Pop" : (regularStone ? "StoneBreak" : "BoulderBreak");
+        string soundEffectName = delivered ? "Pop" : "Break";
 
         audioPlayer.StopSoundEffect("Push");
         audioPlayer.PlaySoundEffect(soundEffectName);
 
-        Destroy(gameObject, time);
+        Destroy(gameObject, delay);
         rb.constraints |= RigidbodyConstraints2D.FreezePosition;
 
         destroyed = true;
@@ -109,7 +116,7 @@ public class Stone : InteractiveObject
 
     private void OnDestroy()
     {
-        GameplayManager.Instance.stonesList.Remove(gameObject);
+        GameplayManager.Instance.rocksList.Remove(gameObject);
     }
 
     public override void InteractionStart()
@@ -130,7 +137,12 @@ public class Stone : InteractiveObject
 
     void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.CompareTag("Player") && !destroyed)
+        if (destroyed)
+        {
+            return;
+        }
+
+        if (other.gameObject.CompareTag("Player"))
         {
             rb.constraints &= ~RigidbodyConstraints2D.FreezePosition;
         }

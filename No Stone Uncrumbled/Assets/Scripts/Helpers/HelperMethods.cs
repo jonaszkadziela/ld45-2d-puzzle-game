@@ -1,6 +1,6 @@
-﻿namespace ExtensionMethods
+﻿namespace HelperMethods
 {
-    public static class MyExtensions
+    public static class Helpers
     {
         public static float Map(this float value, float from1, float to1, float from2, float to2)
         {

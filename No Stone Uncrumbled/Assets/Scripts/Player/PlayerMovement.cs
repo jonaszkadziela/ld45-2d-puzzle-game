@@ -3,15 +3,15 @@
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerMovement : MonoBehaviour
 {
-    public float initialSpeed = 5f;
-
     public Animator animator;
+
+    public float initialSpeed = 5f;
 
     private Rigidbody2D rb;
     private Vector2 movement;
-    private float speed;
-
     private Vector3 previousPosition;
+
+    private float speed;
 
     void Start()
     {
@@ -41,10 +41,12 @@ public class PlayerMovement : MonoBehaviour
 
         if (PlayerController.Instance.heldObject)
         {
-            if (PlayerController.Instance.heldObject.GetComponent<Stone>())
+            Rock rock = PlayerController.Instance.heldObject.GetComponent<Rock>();
+
+            if (rock)
             {
-                float stoneMass = PlayerController.Instance.heldObject.GetComponent<Rigidbody2D>().mass / 10f;
-                float massFactor = stoneMass / (rb.mass + stoneMass);
+                float rockMass = rock.GetComponent<Rigidbody2D>().mass / 10f;
+                float massFactor = rockMass / (rb.mass + rockMass);
 
                 speed *= 1 - massFactor;
             }
@@ -52,7 +54,7 @@ public class PlayerMovement : MonoBehaviour
 
         rb.MovePosition(rb.position + movement.normalized * speed * Time.fixedDeltaTime);
 
-        if (Vector3.Distance(transform.position, previousPosition) > 0.01f)
+        if (Vector3.Distance(transform.position, previousPosition) > GameSettings.MovementThreshold)
         {
             PlayerController.Instance.distanceMoved += Vector3.Distance(transform.position, previousPosition);
             PlayerController.Instance.DetermineCurrentEnergy();

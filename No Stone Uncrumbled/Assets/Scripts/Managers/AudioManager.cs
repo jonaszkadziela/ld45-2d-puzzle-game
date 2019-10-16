@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.Audio;
 
@@ -12,10 +11,8 @@ public class AudioManager : MonoBehaviour
     public AudioMixerGroup soundEffectsMixerGroup;
 
     public string soundEffectsContainerName = "Sound Effects";
-
     public float fadeDuration = 2f;
     public AnimationCurve fadeCurve;
-
     public SoundEffect[] soundEffects;
 
     void Awake()
@@ -60,7 +57,7 @@ public class AudioManager : MonoBehaviour
 
     public void PlaySoundEffect(string name)
     {
-        SoundEffect effect = Array.Find(soundEffects, s => s.name == name);
+        SoundEffect effect = System.Array.Find(soundEffects, s => s.name == name);
 
         if (effect == null)
         {
@@ -81,7 +78,7 @@ public class AudioManager : MonoBehaviour
     {
         if (effect.soundEffectClips.Length > 0)
         {
-            int randomIndex = UnityEngine.Random.Range(0, effect.soundEffectClips.Length);
+            int randomIndex = Random.Range(0, effect.soundEffectClips.Length);
 
             return effect.soundEffectClips[randomIndex];
         }

@@ -11,7 +11,7 @@ public class PlayerInteraction : MonoBehaviour
             return;
         }
 
-        if (Input.GetButtonDown("Interact") && interactiveObject)
+        if (Input.GetButtonDown("Interact"))
         {
             if (interactiveObject.gameObject == PlayerController.Instance.heldObject)
             {

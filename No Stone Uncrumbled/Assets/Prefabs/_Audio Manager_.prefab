@@ -90,22 +90,22 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   soundEffects:
-  - source: {fileID: 0}
-    name: NewPuzzle
-    pitchVariationRange: 0
+  - name: Puzzle-New
     loop: 0
     soundEffectClips:
     - clip: {fileID: 8300000, guid: d6efaaec4a182b64ebceb7ee39408bfd, type: 3}
       volume: 1
       pitch: 1
-  - source: {fileID: 0}
-    name: GameOver
+    source: {fileID: 0}
     pitchVariationRange: 0
+  - name: GameOver
     loop: 0
     soundEffectClips:
     - clip: {fileID: 8300000, guid: 0199a15cf1841344e8f123e8e1274b93, type: 3}
       volume: 1
       pitch: 1
+    source: {fileID: 0}
+    pitchVariationRange: 0
 --- !u!114 &3482359067759134179
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -118,6 +118,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 475a07e56daf6544e982b7d0a56deef0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioLayersContainerName: Audio Layers
   fadeDuration: 2
   fadeCurve:
     serializedVersion: 2
@@ -143,33 +144,32 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  audioLayersContainerName: Audio Layers
   audioLayers:
-  - name: MainMenuLoop
-    source: {fileID: 0}
+  - name: MainMenu-Loop
     audioLayerClip:
       clip: {fileID: 8300000, guid: 52c0f6a6c6a536c409bf79928d724948, type: 3}
       volume: 1
       pitch: 1
-    isFading: 0
-  - name: GameplayLoop
     source: {fileID: 0}
+    isFading: 0
+  - name: Gameplay-Loop
     audioLayerClip:
       clip: {fileID: 8300000, guid: febd413f721fd274686b8d903fc2e54b, type: 3}
       volume: 1
       pitch: 1
-    isFading: 0
-  - name: GameplayLoopLowEnergy
     source: {fileID: 0}
+    isFading: 0
+  - name: Gameplay-Loop-LowEnergy
     audioLayerClip:
       clip: {fileID: 8300000, guid: 18cff6faa7cfd8545824bd92c0057139, type: 3}
       volume: 1
       pitch: 1
-    isFading: 0
-  - name: ShopLoop
     source: {fileID: 0}
+    isFading: 0
+  - name: Shop-Loop
     audioLayerClip:
       clip: {fileID: 8300000, guid: e67285b4bf1fb0640a87977d8602c025, type: 3}
       volume: 1
       pitch: 1
+    source: {fileID: 0}
     isFading: 0

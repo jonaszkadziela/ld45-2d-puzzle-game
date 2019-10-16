@@ -15,10 +15,12 @@ public class GameSettings : MonoBehaviour
     public RangeInt energyRewardRange = new RangeInt(10, 50);
 
     [Header("Gameplay Settings")]
-    public RangeInt stoneSpawnAmount = new RangeInt(20, 40);
-    public RangeInt stoneInitialNumberRange = new RangeInt(5, 30);
-    public int stoneSpawnMoreThreshold = 10;
-    public float boulderPercentage = 0.2f;
+    public float movementThreshold = 0.01f;
+
+    public RangeInt rockSpawnAmount = new RangeInt(20, 40);
+    public RangeInt rockInitialNumberRange = new RangeInt(5, 30);
+    public int rockSpawnMoreThreshold = 10;
+    public float granitePercentage = 0.2f;
 
     public RangeInt targetNumberRange = new RangeInt(50, 150);
     public RangeInt targetMarginRange = new RangeInt(10, 20);
@@ -30,7 +32,8 @@ public class GameSettings : MonoBehaviour
     /**
      * Public static variables to use them easily in other scripts
      */
-    
+
+    // Player Settings
     public static int InitialMoney;
     public static int MoneyRewardDecreasePerMinute;
     public static float InitialEnergy;
@@ -38,10 +41,13 @@ public class GameSettings : MonoBehaviour
     public static RangeInt MoneyRewardRange;
     public static RangeInt EnergyRewardRange;
 
-    public static RangeInt StoneSpawnAmount;
-    public static RangeInt StoneInitialNumberRange;
-    public static int StoneSpawnMoreThreshold;
-    public static float BoulderPercentage;
+    // Gameplay Settings
+    public static float MovementThreshold;
+
+    public static RangeInt RockSpawnAmount;
+    public static RangeInt RockInitialNumberRange;
+    public static int RockSpawnMoreThreshold;
+    public static float GranitePercentage;
 
     public static RangeInt TargetNumberRange;
     public static RangeInt TargetMarginRange;
@@ -52,6 +58,7 @@ public class GameSettings : MonoBehaviour
 
     void Awake()
     {
+        // Player Settings
         InitialMoney = initialMoney;
         MoneyRewardDecreasePerMinute = moneyRewardDecreasePerMinute;
         InitialEnergy = initialEnergy;
@@ -59,10 +66,13 @@ public class GameSettings : MonoBehaviour
         EnergyRewardRange = energyRewardRange;
         EnergyDecreaseSlowness = energyDecreaseSlowness;
 
-        StoneSpawnAmount = stoneSpawnAmount;
-        StoneInitialNumberRange = stoneInitialNumberRange;
-        StoneSpawnMoreThreshold = stoneSpawnMoreThreshold;
-        BoulderPercentage = boulderPercentage;
+        // Gameplay Settings
+        MovementThreshold = movementThreshold;
+
+        RockSpawnAmount = rockSpawnAmount;
+        RockInitialNumberRange = rockInitialNumberRange;
+        RockSpawnMoreThreshold = rockSpawnMoreThreshold;
+        GranitePercentage = granitePercentage;
 
         TargetNumberRange = targetNumberRange;
         TargetMarginRange = targetMarginRange;

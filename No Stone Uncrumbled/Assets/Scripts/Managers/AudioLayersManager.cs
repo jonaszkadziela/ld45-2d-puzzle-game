@@ -2,16 +2,15 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using ExtensionMethods;
+using HelperMethods;
 
 public class AudioLayersManager : MonoBehaviour
 {
     public static AudioLayersManager Instance;
 
+    public string audioLayersContainerName = "Audio Layers";
     public float fadeDuration = 2f;
     public AnimationCurve fadeCurve;
-
-    public string audioLayersContainerName = "Audio Layers";
     public AudioLayer[] audioLayers;
 
     private bool initializedAudioLayers = false;
@@ -109,11 +108,11 @@ public class AudioLayersManager : MonoBehaviour
         switch (sceneName)
         {
             case "MainMenu":
-                Unmute("MainMenuLoop");
+                Unmute("MainMenu-Loop");
             break;
 
             case "Game":
-                Unmute("GameplayLoop");
+                Unmute("Gameplay-Loop");
             break;
         }
     }

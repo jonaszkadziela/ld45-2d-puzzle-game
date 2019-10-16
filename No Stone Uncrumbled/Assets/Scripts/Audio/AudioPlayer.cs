@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class AudioPlayer : MonoBehaviour
 {
@@ -17,7 +16,7 @@ public class AudioPlayer : MonoBehaviour
 
     public void PlaySoundEffect(string name)
     {
-        SoundEffect effect = Array.Find(soundEffects, s => s.name == name);
+        SoundEffect effect = System.Array.Find(soundEffects, s => s.name == name);
 
         if (effect == null)
         {
@@ -26,8 +25,7 @@ public class AudioPlayer : MonoBehaviour
         }
 
         Clip randomClip = AudioManager.GetRandomClip(effect);
-
-        float pitch = randomClip.pitch + UnityEngine.Random.Range(-effect.pitchVariationRange, effect.pitchVariationRange);
+        float pitch = randomClip.pitch + Random.Range(-effect.pitchVariationRange, effect.pitchVariationRange);
 
         effect.source.clip = randomClip.clip;
         effect.source.volume = randomClip.volume;
@@ -39,7 +37,7 @@ public class AudioPlayer : MonoBehaviour
 
     public void StopSoundEffect(string name)
     {
-        SoundEffect effect = Array.Find(soundEffects, s => s.name == name);
+        SoundEffect effect = System.Array.Find(soundEffects, s => s.name == name);
 
         if (effect == null)
         {

@@ -18,7 +18,7 @@ public class RangeInt
         return range;
     }
 
-    public static RangeInt operator -(RangeInt range, int number)
+    public static RangeInt operator-(RangeInt range, int number)
     {
         range.min -= number;
         range.max -= number;

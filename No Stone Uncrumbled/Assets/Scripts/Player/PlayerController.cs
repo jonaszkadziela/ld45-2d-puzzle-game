@@ -7,18 +7,15 @@ public class PlayerController : MonoBehaviour
     public int money;
     public float energy;
     public float initialEnergy;
-    [HideInInspector]
-    public float distanceMoved = 0f;
+    [HideInInspector] public float distanceMoved = 0f;
 
-    [Range(0.01f, 1f)]
-    public float lowEnergyThreshold = 0.2f;
-    public bool audioLayerEnabled = false;
+    [Range(0.01f, 1f)] public float lowEnergyThreshold = 0.2f;
     public int slotsLength;
-
-    public GameObject heldObject;
-    public Transform[] slots;
+    public bool audioLayerEnabled = false;
 
     public Transform slotsContainer;
+    public GameObject heldObject;
+    [HideInInspector] public Transform[] slots;
 
     void Awake()
     {
@@ -58,7 +55,7 @@ public class PlayerController : MonoBehaviour
         {
             if (energy < GameSettings.InitialEnergy * lowEnergyThreshold)
             {
-                AudioLayersManager.Instance.Unmute("GameplayLoopLowEnergy");
+                AudioLayersManager.Instance.Unmute("Gameplay-Loop-LowEnergy");
                 audioLayerEnabled = true;
             }
         }
@@ -66,7 +63,7 @@ public class PlayerController : MonoBehaviour
         {
             if (energy >= GameSettings.InitialEnergy * lowEnergyThreshold)
             {
-                AudioLayersManager.Instance.Mute("GameplayLoopLowEnergy");
+                AudioLayersManager.Instance.Mute("Gameplay-Loop-LowEnergy");
                 audioLayerEnabled = false;
             }
         }
@@ -77,14 +74,14 @@ public class PlayerController : MonoBehaviour
         float minDistance = Mathf.Infinity;
         Transform nearestSlot = null;
 
-        foreach (Transform t in slots)
+        foreach (Transform slot in slots)
         {
-            float currentDistance = Vector3.Distance(t.position, objectPosition);
+            float currentDistance = Vector3.Distance(slot.position, objectPosition);
 
             if (currentDistance < minDistance)
             {
                 minDistance = currentDistance;
-                nearestSlot = t;
+                nearestSlot = slot;
             }
         }
 

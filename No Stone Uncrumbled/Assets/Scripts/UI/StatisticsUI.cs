@@ -4,19 +4,18 @@ using TMPro;
 
 public class StatisticsUI : MonoBehaviour
 {
-    public string initialTargetText = "Target";
-
-    public GameObject statisticsLeftPanel;
-    public GameObject statisticsRightPanel;
-
+    [Header("Left Panel")]
     public TextMeshProUGUI energyValueText;
     public TextMeshProUGUI moneyValueText;
 
+    [Header("Right Panel")]
     public TextMeshProUGUI roundValueText;
     public TextMeshProUGUI roundTimeValueText;
     public TextMeshProUGUI numberValueText;
     public TextMeshProUGUI targetText;
     public TextMeshProUGUI targetValueText;
+
+    private string initialTargetText = "Target";
 
     void Update()
     {
@@ -25,20 +24,11 @@ public class StatisticsUI : MonoBehaviour
             return;
         }
 
-        if (PlayerController.Instance)
-        {
-            statisticsLeftPanel.SetActive(true);
-
-            energyValueText.text = Mathf.RoundToInt(PlayerController.Instance.energy).ToString();
-            moneyValueText.text = PlayerController.Instance.money.ToString();
-        }
-        else
-        {
-            statisticsLeftPanel.SetActive(false);
-        }
-
-        statisticsRightPanel.SetActive(true);
-
+        // Left Panel
+        energyValueText.text = Mathf.RoundToInt(PlayerController.Instance.energy).ToString();
+        moneyValueText.text = PlayerController.Instance.money.ToString();
+        
+        // Right Panel
         roundValueText.text = GameplayManager.CurrentRound.ToString();
 
         float roundTime = Time.time - GameplayManager.RoundStartTime;

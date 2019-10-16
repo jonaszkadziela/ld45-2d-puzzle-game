@@ -4,6 +4,7 @@ public class FlickerLight : MonoBehaviour
 {
     public float flickerSpeed = 0.2f;
     public float multiplyScale = 1.05f;
+    public float scaleThreshold = 0.01f;
 
     private Vector3 initialScale;
     private Vector3 targetScale;
@@ -20,7 +21,7 @@ public class FlickerLight : MonoBehaviour
         targetScale = increasing ? initialScale * multiplyScale : initialScale;
         transform.localScale = Vector3.MoveTowards(transform.localScale, targetScale, flickerSpeed * Time.deltaTime);
 
-        if (Vector3.Distance(transform.localScale, targetScale) < 0.01f)
+        if (Vector3.Distance(transform.localScale, targetScale) < scaleThreshold)
         {
             increasing = !increasing;
         }

@@ -348,7 +348,7 @@ GameObject:
   - component: {fileID: 2372535108629497268}
   - component: {fileID: 2372535108629497339}
   m_Layer: 9
-  m_Name: Boulder
+  m_Name: Granite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -419,13 +419,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1567a1ba3ecf15b4a86441e3accefafe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialNumber: 5
-  number: 0
+  rockType: 1
   durability: 10
-  regularStone: 0
+  number: 0
   destroyed: 0
   pickedUp: 0
-  pushed: 0
 --- !u!114 &2372535108629497268
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -452,27 +450,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   soundEffects:
-  - source: {fileID: 0}
-    name: Push
-    pitchVariationRange: 0.1
+  - name: Push
     loop: 1
+    pitchVariationRange: 0.1
     soundEffectClips:
     - clip: {fileID: 8300000, guid: 457103d4ad1a84a45a531f8cbf313e16, type: 3}
-      volume: 0.2
-      pitch: 1
-  - source: {fileID: 0}
-    name: StoneBreak
-    pitchVariationRange: 0.1
+      volume: 0.5
+      pitch: 0.75
+    source: {fileID: 0}
+  - name: Break
     loop: 0
+    pitchVariationRange: 0.1
     soundEffectClips:
     - clip: {fileID: 8300000, guid: a95a7fc1333c7d74da41e8d611d03119, type: 3}
       volume: 0.5
       pitch: 1
-  - source: {fileID: 0}
-    name: Pop
-    pitchVariationRange: 0.1
+    source: {fileID: 0}
+  - name: Pop
     loop: 0
+    pitchVariationRange: 0.1
     soundEffectClips:
     - clip: {fileID: 8300000, guid: 2b865a8f495eeaf4eac8f76d143700d9, type: 3}
       volume: 0.5
       pitch: 1
+    source: {fileID: 0}
