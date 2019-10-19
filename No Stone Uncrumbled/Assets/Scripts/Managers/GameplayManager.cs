@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -21,22 +22,24 @@ public class GameplayManager : MonoBehaviour
     public static int TargetNumberMargin;
     public static bool LevelGenerated;
 
-    public Tilemap groundTileMap;
-    public RangeInt groundPlayAreaX;
-    public RangeInt groundPlayAreaY;
-    public Tile[] safeTiles;
-
+    [Header("Player")]
     public Vector2 playerSpawnPosition;
     public GameObject playerPrefab;
     public GameObject playerStatisticsUI;
 
-    public GameObject map;
+    [Header("Map")]
+    public Tilemap groundTilemap;
+    public Tile[] safeTiles;
+
     public GameObject sandstonePrefab;
     public GameObject granitePrefab;
 
-    [HideInInspector] public List<GameObject> rocksList;
+    [HideInInspector] public List<GameObject> objectsList;
 
     private GameObject levelContainer;
+    private GameObject playerGO = null;
+    private int maxAttemptCount = 20;
+    private bool spawningRocks = false;
 
     void Awake()
     {
@@ -52,15 +55,14 @@ public class GameplayManager : MonoBehaviour
 
     void Start()
     {
-        rocksList = new List<GameObject>();
+        objectsList = new List<GameObject>();
 
         levelContainer = new GameObject("Level Elements");
-        levelContainer.transform.parent = map.transform;
+        levelContainer.transform.parent = groundTilemap.transform.parent;
 
         CurrentRound = 0;
-        NewRound();
 
-        InitializePlayer();
+        NewRound();
     }
 
     void Update()
@@ -70,26 +72,15 @@ public class GameplayManager : MonoBehaviour
             return;
         }
 
-        if (!LevelGenerated)
+        if (LevelGenerated)
         {
-            int rocksAmount = Random.Range(
-                GameSettings.RockSpawnAmount.min,
-                GameSettings.RockSpawnAmount.max
-            );
-
-            GenerateLevel(rocksAmount);
-
-            RoundStartTime = Time.time;
-        }
-        else
-        {
-            if (rocksList.Count < GameSettings.RockSpawnMoreThreshold)
+            if (!spawningRocks && objectsList.Count < GameSettings.RockSpawnMoreThreshold)
             {
                 int rocksAmount = Random.Range(
                     GameSettings.RockSpawnAmount.min - GameSettings.RockSpawnMoreThreshold,
                     GameSettings.RockSpawnAmount.max - GameSettings.RockSpawnMoreThreshold
                 );
-                GenerateLevel(rocksAmount);
+                StartCoroutine(SpawnRocks(rocksAmount));
             }
         }
     }
@@ -146,11 +137,14 @@ public class GameplayManager : MonoBehaviour
 
     private void NewRound()
     {
-        LevelGenerated = false;
-
-        foreach (GameObject rock in rocksList)
+        foreach (GameObject obj in objectsList)
         {
-            Destroy(rock);
+            Rock rock = obj.GetComponent<Rock>();
+
+            if (rock)
+            {
+                Destroy(rock.gameObject);
+            }
         }
 
         TargetNumber = Random.Range(
@@ -164,12 +158,15 @@ public class GameplayManager : MonoBehaviour
 
         CurrentRound++;
         CurrentNumber = 0;
+        RoundStartTime = Time.time;
 
         if (CurrentRound > 1)
         {
             AudioManager.Instance.PlaySoundEffect("Puzzle-New");
             AudioLayersManager.Instance.Unmute("Gameplay-Loop");
         }
+
+        GenerateLevel();
     }
 
     private void CompletedRound()
@@ -190,50 +187,108 @@ public class GameplayManager : MonoBehaviour
         NewRound();
     }
 
-    private void InitializePlayer()
+    private Vector3Int GetRandomSpawnPosition()
     {
-        Instantiate(playerPrefab, playerSpawnPosition, Quaternion.identity);
-        playerStatisticsUI.SetActive(true);
-    }
+        Vector3Int randomPosition;
+        int attemptCount = 0;
+        bool validPosition = false;
 
-    private void GenerateLevel(int rocksAmount)
-    {
-        for (int i = 0; i < rocksAmount; i++)
+        do
         {
-            bool tileGenerated = false;
+            attemptCount++;
+            randomPosition = new Vector3Int(
+                Random.Range(groundTilemap.cellBounds.min.x, groundTilemap.cellBounds.max.x),
+                Random.Range(groundTilemap.cellBounds.min.y, groundTilemap.cellBounds.max.y),
+                groundTilemap.origin.z
+            );
 
-            Vector3Int randomPosition = Vector3Int.zero;
-
-            randomPosition.x = Random.Range(groundPlayAreaX.min, groundPlayAreaX.max);
-            randomPosition.y = Random.Range(groundPlayAreaY.min, groundPlayAreaY.max);
-
+            // Check if the position is within a safe tile
             foreach (Tile tile in safeTiles)
             {
-                if (groundTileMap.GetTile(randomPosition) == tile)
+                if (groundTilemap.HasTile(randomPosition) &&
+                    groundTilemap.GetTile(randomPosition) == tile)
                 {
-                    GameObject prefab = sandstonePrefab;
-
-                    if (GameSettings.GranitePercentage >= Random.Range(0f, 1f))
-                    {
-                        prefab = granitePrefab;
-                    }
-
-                    GameObject rockGO = Instantiate(prefab, randomPosition, Quaternion.identity);
-                    rockGO.transform.parent = levelContainer.transform;
-                    rocksList.Add(rockGO);
-
-                    tileGenerated = true;
-
+                    validPosition = true;
                     break;
                 }
             }
-
-            if (!tileGenerated)
+            if (validPosition)
             {
-                i--;
+                // If we have tried too many times, do not make any further checks
+                // Just return a position which is within a safe tile
+                if (attemptCount > maxAttemptCount)
+                {
+                    return randomPosition;
+                }
+            }
+            else
+            {
+                continue;
+            }
+
+            // Check if the position does not collide with any other dynamically generated object
+            foreach (GameObject obj in objectsList)
+            {
+                Collider2D objCollider = obj.GetComponent<Collider2D>();
+                Vector2Int randomPosition2D = new Vector2Int(randomPosition.x, randomPosition.y);
+
+                if (objCollider.OverlapPoint(randomPosition2D))
+                {
+                    validPosition = false;
+                    break;
+                }
             }
         }
+        while (!validPosition);
+
+        return randomPosition;
+    }
+
+    private void GenerateLevel()
+    {
+        if (!playerGO)
+        {
+            SpawnPlayer();
+        }
+
+        int rocksAmount = Random.Range(
+            GameSettings.RockSpawnAmount.min,
+            GameSettings.RockSpawnAmount.max
+        );
+
+        StartCoroutine(SpawnRocks(rocksAmount));
 
         LevelGenerated = true;
+    }
+
+    private void SpawnPlayer()
+    {
+        playerGO = Instantiate(playerPrefab, playerSpawnPosition, Quaternion.identity);
+        objectsList.Add(playerGO);
+
+        playerStatisticsUI.SetActive(true);
+    }
+
+    private IEnumerator SpawnRocks(int rocksAmount)
+    {
+        spawningRocks = true;
+
+        for (int i = 0; i < rocksAmount; i++)
+        {
+            Vector3Int randomPosition = GetRandomSpawnPosition();
+            GameObject prefab = sandstonePrefab;
+
+            if (GameSettings.GranitePercentage >= Random.Range(0f, 1f))
+            {
+                prefab = granitePrefab;
+            }
+
+            GameObject rockGO = Instantiate(prefab, randomPosition, Quaternion.identity);
+            rockGO.transform.parent = levelContainer.transform;
+
+            yield return 0;
+        }
+
+        spawningRocks = false;
     }
 }
