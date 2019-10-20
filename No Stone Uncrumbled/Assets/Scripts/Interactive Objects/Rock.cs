@@ -41,7 +41,7 @@ public class Rock : InteractiveObject
         number = initialNumber;
         previousPosition = transform.position;
 
-        GameplayManager.Instance.objectsList.Add(gameObject);
+        LevelManager.ObjectsList.Add(gameObject);
     }
 
     void FixedUpdate()
@@ -118,7 +118,7 @@ public class Rock : InteractiveObject
 
     private void OnDestroy()
     {
-        GameplayManager.Instance.objectsList.Remove(gameObject);
+        LevelManager.ObjectsList.Remove(gameObject);
     }
 
     public override void InteractionStart()
