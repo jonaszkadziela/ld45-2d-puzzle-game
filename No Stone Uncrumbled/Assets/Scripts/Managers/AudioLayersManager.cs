@@ -92,7 +92,7 @@ public class AudioLayersManager : MonoBehaviour
         StartCoroutine(FadeIn(layer));
     }
 
-    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         if (initializedAudioLayers)
         {
@@ -119,6 +119,11 @@ public class AudioLayersManager : MonoBehaviour
 
     private IEnumerator FadeIn(AudioLayer layer)
     {
+        while (layer.isFading)
+        {
+            yield return new WaitForSeconds(0.1f);
+        }
+
         layer.isFading = true;
         layer.source.mute = false;
 
@@ -141,6 +146,11 @@ public class AudioLayersManager : MonoBehaviour
 
     private IEnumerator FadeOut(AudioLayer layer)
     {
+        while (layer.isFading)
+        {
+            yield return new WaitForSeconds(0.1f);
+        }
+
         layer.isFading = true;
 
         float time = fadeDuration;

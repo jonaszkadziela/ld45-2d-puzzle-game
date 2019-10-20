@@ -145,7 +145,6 @@ public class GameplayManager : MonoBehaviour
         if (CurrentRound > 1)
         {
             AudioManager.Instance.PlaySoundEffect("Puzzle-New");
-            AudioLayersManager.Instance.Unmute("Gameplay-Loop");
         }
 
         LevelManager.Instance.GenerateLevel();

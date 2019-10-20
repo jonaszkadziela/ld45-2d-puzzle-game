@@ -3,14 +3,59 @@
 [RequireComponent(typeof(Collider2D))]
 public class ShopArea : MonoBehaviour
 {
+    public static bool PlayingShopLayer;
+
+    private float cooldown;
+    private bool insideShop = false;
+
+    void Start()
+    {
+        PlayingShopLayer = false;
+    }
+
+    void Update()
+    {
+        if (GameManager.GameOver)
+        {
+            return;
+        }
+
+        cooldown -= Time.unscaledDeltaTime;
+
+        if (cooldown < 0f)
+        {
+            if (insideShop)
+            {
+                if (!PlayingShopLayer)
+                {
+                    AudioLayersManager.Instance.Mute("Gameplay-Loop");
+                    AudioLayersManager.Instance.Mute("Gameplay-Loop-LowEnergy");
+                    AudioLayersManager.Instance.Unmute("Shop-Loop");
+
+                    PlayingShopLayer = true;
+                }
+            }
+            else
+            {
+                if (PlayingShopLayer)
+                {
+                    AudioLayersManager.Instance.Mute("Shop-Loop");
+                    AudioLayersManager.Instance.Unmute("Gameplay-Loop");
+
+                    PlayingShopLayer = false;
+                }
+            }
+        }
+    }
+
     void OnTriggerEnter2D(Collider2D other)
     {
         PlayerController player = other.GetComponent<PlayerController>();
 
         if (player)
         {
-            AudioLayersManager.Instance.Reset();
-            AudioLayersManager.Instance.Unmute("Shop-Loop");
+            cooldown = AudioLayersManager.Instance.fadeDuration / 2f;
+            insideShop = true;
         }
     }
 
@@ -20,10 +65,8 @@ public class ShopArea : MonoBehaviour
 
         if (player)
         {
-            AudioLayersManager.Instance.Reset();
-            AudioLayersManager.Instance.Unmute("Gameplay-Loop");
-
-            player.audioLayerEnabled = false;
+            cooldown = AudioLayersManager.Instance.fadeDuration / 2f;
+            insideShop = false;
         }
     }
 }

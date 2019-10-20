@@ -51,20 +51,27 @@ public class PlayerController : MonoBehaviour
             return;
         }
 
-        if (!audioLayerEnabled)
+        if (ShopArea.PlayingShopLayer)
         {
-            if (energy < GameSettings.InitialEnergy * lowEnergyThreshold)
-            {
-                AudioLayersManager.Instance.Unmute("Gameplay-Loop-LowEnergy");
-                audioLayerEnabled = true;
-            }
+            audioLayerEnabled = false;
         }
         else
         {
-            if (energy >= GameSettings.InitialEnergy * lowEnergyThreshold)
+            if (!audioLayerEnabled)
             {
-                AudioLayersManager.Instance.Mute("Gameplay-Loop-LowEnergy");
-                audioLayerEnabled = false;
+                if (energy < GameSettings.InitialEnergy * lowEnergyThreshold)
+                {
+                    AudioLayersManager.Instance.Unmute("Gameplay-Loop-LowEnergy");
+                    audioLayerEnabled = true;
+                }
+            }
+            else
+            {
+                if (energy >= GameSettings.InitialEnergy * lowEnergyThreshold)
+                {
+                    AudioLayersManager.Instance.Mute("Gameplay-Loop-LowEnergy");
+                    audioLayerEnabled = false;
+                }
             }
         }
     }
