@@ -112,6 +112,10 @@ public class Rock : InteractiveObject
         Destroy(gameObject, delay);
         rb.constraints |= RigidbodyConstraints2D.FreezePosition;
 
+        if (PlayerController.Instance.heldObject == gameObject)
+        {
+            PlayerController.Instance.heldObject = null;
+        }
         destroyed = true;
         pickedUp = false;
     }
