@@ -58,8 +58,8 @@ public class LevelManager : MonoBehaviour
         }
 
         int rocksAmount = Random.Range(
-            GameSettings.RockSpawnAmount.min,
-            GameSettings.RockSpawnAmount.max
+            GameSettings.RockSpawnAmountRange.min,
+            GameSettings.RockSpawnAmountRange.max
         );
 
         SpawnRocks(rocksAmount);

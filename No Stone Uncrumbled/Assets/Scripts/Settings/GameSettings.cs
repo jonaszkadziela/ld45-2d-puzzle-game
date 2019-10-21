@@ -1,84 +1,36 @@
-﻿using UnityEngine;
-
-public class GameSettings : MonoBehaviour
+﻿public static class GameSettings
 {
     /**
-     * Public variables to set values in UnityEditor
+     * Player Settings
      */
 
-    [Header("Player Settings")]
-    public int initialMoney = 0;
-    public int moneyRewardDecreasePerMinute = 10;
-    public float initialEnergy = 50f;
-    public float energyDecreaseSlowness = 10f;
-    public RangeInt moneyRewardRange = new RangeInt(10, 50);
-    public RangeInt energyRewardRange = new RangeInt(10, 50);
+    public const int InitialMoney = 0;
+    public const float InitialEnergy = 50f;
 
-    [Header("Gameplay Settings")]
-    public float movementThreshold = 0.01f;
+    public static int MoneyRewardDecreasePerMinute = 10;
+    public static float EnergyDecreaseSlowness = 10f;
 
-    public RangeInt rockSpawnAmount = new RangeInt(20, 40);
-    public RangeInt rockInitialNumberRange = new RangeInt(5, 30);
-    public int rockSpawnMoreThreshold = 10;
-    public float granitePercentage = 0.2f;
-
-    public RangeInt targetNumberRange = new RangeInt(50, 150);
-    public RangeInt targetMarginRange = new RangeInt(10, 20);
-    public RangeInt minTargetMarginRange = new RangeInt(1, 5);
-
-    public int targetNumberIncrease = 20;
-    public int targetMarginDecrease = 2;
+    public static RangeInt MoneyRewardRange = new RangeInt(10, 50);
+    public static RangeInt EnergyRewardRange = new RangeInt(10, 50);
 
     /**
-     * Public static variables to use them easily in other scripts
+     * Gameplay Settings
      */
 
-    // Player Settings
-    public static int InitialMoney;
-    public static int MoneyRewardDecreasePerMinute;
-    public static float InitialEnergy;
-    public static float EnergyDecreaseSlowness;
-    public static RangeInt MoneyRewardRange;
-    public static RangeInt EnergyRewardRange;
+    public const int InitialCurrentRound = 0;
+    public const int InitialCurrentNumber = 0;
 
-    // Gameplay Settings
-    public static float MovementThreshold;
+    public static float MovementThreshold = 0.01f;
 
-    public static RangeInt RockSpawnAmount;
-    public static RangeInt RockInitialNumberRange;
-    public static int RockSpawnMoreThreshold;
-    public static float GranitePercentage;
+    public static RangeInt RockSpawnAmountRange = new RangeInt(20, 40);
+    public static RangeInt RockInitialNumberRange = new RangeInt(5, 30);
+    public static int RockSpawnMoreThreshold = 10;
+    public static float GranitePercentage = 0.2f;
 
-    public static RangeInt TargetNumberRange;
-    public static RangeInt TargetMarginRange;
-    public static RangeInt MinTargetMarginRange;
+    public static RangeInt TargetNumberRange = new RangeInt(50, 150);
+    public static RangeInt TargetMarginRange = new RangeInt(10, 20);
+    public static RangeInt MinTargetMarginRange = new RangeInt(1, 5);
 
-    public static int TargetNumberIncrease;
-    public static int TargetMarginDecrease;
-
-    void Awake()
-    {
-        // Player Settings
-        InitialMoney = initialMoney;
-        MoneyRewardDecreasePerMinute = moneyRewardDecreasePerMinute;
-        InitialEnergy = initialEnergy;
-        MoneyRewardRange = moneyRewardRange;
-        EnergyRewardRange = energyRewardRange;
-        EnergyDecreaseSlowness = energyDecreaseSlowness;
-
-        // Gameplay Settings
-        MovementThreshold = movementThreshold;
-
-        RockSpawnAmount = rockSpawnAmount;
-        RockInitialNumberRange = rockInitialNumberRange;
-        RockSpawnMoreThreshold = rockSpawnMoreThreshold;
-        GranitePercentage = granitePercentage;
-
-        TargetNumberRange = targetNumberRange;
-        TargetMarginRange = targetMarginRange;
-        MinTargetMarginRange = minTargetMarginRange;
-
-        TargetNumberIncrease = targetNumberIncrease;
-        TargetMarginDecrease = targetMarginDecrease;
-    }
+    public static int TargetNumberIncrease = 20;
+    public static int TargetMarginDecrease = 2;
 }

@@ -32,9 +32,10 @@ public class GameplayManager : MonoBehaviour
 
     void Start()
     {
-        CurrentRound = 0;
-
+        InitializeVariables();
         NewRound();
+
+        CurrentNumber = GameSettings.InitialCurrentNumber;
     }
 
     void Update()
@@ -49,8 +50,8 @@ public class GameplayManager : MonoBehaviour
             if (!LevelManager.SpawningRocks && LevelManager.ObjectsList.Count < GameSettings.RockSpawnMoreThreshold)
             {
                 int rocksAmount = Random.Range(
-                    GameSettings.RockSpawnAmount.min - GameSettings.RockSpawnMoreThreshold,
-                    GameSettings.RockSpawnAmount.max - GameSettings.RockSpawnMoreThreshold
+                    GameSettings.RockSpawnAmountRange.min - GameSettings.RockSpawnMoreThreshold,
+                    GameSettings.RockSpawnAmountRange.max - GameSettings.RockSpawnMoreThreshold
                 );
                 LevelManager.Instance.SpawnRocks(rocksAmount);
             }
@@ -148,5 +149,11 @@ public class GameplayManager : MonoBehaviour
         }
 
         LevelManager.Instance.GenerateLevel();
+    }
+
+    private void InitializeVariables()
+    {
+        CurrentRound = GameSettings.InitialCurrentRound;
+        CurrentNumber = GameSettings.InitialCurrentNumber;
     }
 }

@@ -31,9 +31,7 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
-        money = GameSettings.InitialMoney;
-        energy = GameSettings.InitialEnergy;
-        initialEnergy = GameSettings.InitialEnergy;        
+        InitializeVariables();
 
         slotsLength = slotsContainer.childCount;
         slots = new Transform[slotsLength];
@@ -103,5 +101,12 @@ public class PlayerController : MonoBehaviour
         {
             GameManager.Instance.TriggerGameOver();
         }
+    }
+
+    private void InitializeVariables()
+    {
+        money = GameSettings.InitialMoney;
+        energy = GameSettings.InitialEnergy;
+        initialEnergy = GameSettings.InitialEnergy;
     }
 }

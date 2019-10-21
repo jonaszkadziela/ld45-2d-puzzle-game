@@ -95302,7 +95302,6 @@ GameObject:
   - component: {fileID: 1021540600}
   - component: {fileID: 1021540598}
   - component: {fileID: 1021540601}
-  - component: {fileID: 1021540599}
   m_Layer: 0
   m_Name: _Game Manager_
   m_TagString: Untagged
@@ -95336,49 +95335,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa9f1e8ee78c08e438ca46e9b08be460, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectsList: []
---- !u!114 &1021540599
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1021540596}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b390d1c5a94321e46aba3e70e2636afa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  initialMoney: 0
-  moneyRewardDecreasePerMinute: 10
-  initialEnergy: 50
-  energyDecreaseSlowness: 10
-  moneyRewardRange:
-    min: 10
-    max: 50
-  energyRewardRange:
-    min: 10
-    max: 50
-  movementThreshold: 0.01
-  rockSpawnAmount:
-    min: 20
-    max: 40
-  rockInitialNumberRange:
-    min: 5
-    max: 30
-  rockSpawnMoreThreshold: 10
-  granitePercentage: 0.2
-  targetNumberRange:
-    min: 50
-    max: 150
-  targetMarginRange:
-    min: 10
-    max: 20
-  minTargetMarginRange:
-    min: 1
-    max: 5
-  targetNumberIncrease: 20
-  targetMarginDecrease: 2
 --- !u!114 &1021540600
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -99781,69 +99737,69 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8699a254136c4704ebcb378c1173d788, type: 3}
---- !u!1001 &3482359069118637718
+--- !u!1001 &8828825252078741370
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 3482359067759134180, guid: 4a19b648d4ef6d44d82f740ad0d64cf5,
+    - target: {fileID: 8828825253438227464, guid: 4a19b648d4ef6d44d82f740ad0d64cf5,
         type: 3}
       propertyPath: m_Name
       value: _Audio Manager_
       objectReference: {fileID: 0}
-    - target: {fileID: 3482359067759134178, guid: 4a19b648d4ef6d44d82f740ad0d64cf5,
+    - target: {fileID: 8828825253438227470, guid: 4a19b648d4ef6d44d82f740ad0d64cf5,
         type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3482359067759134178, guid: 4a19b648d4ef6d44d82f740ad0d64cf5,
+    - target: {fileID: 8828825253438227470, guid: 4a19b648d4ef6d44d82f740ad0d64cf5,
         type: 3}
       propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3482359067759134178, guid: 4a19b648d4ef6d44d82f740ad0d64cf5,
+    - target: {fileID: 8828825253438227470, guid: 4a19b648d4ef6d44d82f740ad0d64cf5,
         type: 3}
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3482359067759134178, guid: 4a19b648d4ef6d44d82f740ad0d64cf5,
+    - target: {fileID: 8828825253438227470, guid: 4a19b648d4ef6d44d82f740ad0d64cf5,
         type: 3}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3482359067759134178, guid: 4a19b648d4ef6d44d82f740ad0d64cf5,
+    - target: {fileID: 8828825253438227470, guid: 4a19b648d4ef6d44d82f740ad0d64cf5,
         type: 3}
       propertyPath: m_LocalRotation.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3482359067759134178, guid: 4a19b648d4ef6d44d82f740ad0d64cf5,
+    - target: {fileID: 8828825253438227470, guid: 4a19b648d4ef6d44d82f740ad0d64cf5,
         type: 3}
       propertyPath: m_LocalRotation.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3482359067759134178, guid: 4a19b648d4ef6d44d82f740ad0d64cf5,
+    - target: {fileID: 8828825253438227470, guid: 4a19b648d4ef6d44d82f740ad0d64cf5,
         type: 3}
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 3482359067759134178, guid: 4a19b648d4ef6d44d82f740ad0d64cf5,
+    - target: {fileID: 8828825253438227470, guid: 4a19b648d4ef6d44d82f740ad0d64cf5,
         type: 3}
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 3482359067759134178, guid: 4a19b648d4ef6d44d82f740ad0d64cf5,
+    - target: {fileID: 8828825253438227470, guid: 4a19b648d4ef6d44d82f740ad0d64cf5,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3482359067759134178, guid: 4a19b648d4ef6d44d82f740ad0d64cf5,
+    - target: {fileID: 8828825253438227470, guid: 4a19b648d4ef6d44d82f740ad0d64cf5,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3482359067759134178, guid: 4a19b648d4ef6d44d82f740ad0d64cf5,
+    - target: {fileID: 8828825253438227470, guid: 4a19b648d4ef6d44d82f740ad0d64cf5,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
