@@ -19,6 +19,7 @@
 
     public const int InitialCurrentRound = 0;
     public const int InitialCurrentNumber = 0;
+    public const int InitialHighScore = 0;
 
     public static float MovementThreshold = 0.01f;
 

@@ -20,6 +20,8 @@ public class GameManager : MonoBehaviour
             return;
         }
 
+        GameplayManager.InitializeVariables();
+        SavesManager.Load();
         GameOver = false;
     }
 
@@ -38,11 +40,13 @@ public class GameManager : MonoBehaviour
         AudioManager.Instance.PlaySoundEffect("GameOver");
 
         GameOver = true;
+        SavesManager.Save();
         gameOverUI.Show();
     }
 
     public void QuitGame()
     {
+        SavesManager.Save();
         SceneFade.Instance.FadeOut();
         Invoke("ApplicationQuit", SceneFade.Instance.fadeDuration);
     }

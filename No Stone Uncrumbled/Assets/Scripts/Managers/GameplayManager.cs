@@ -17,6 +17,7 @@ public class GameplayManager : MonoBehaviour
     public static int CurrentNumber;
     public static int TargetNumber;
     public static int TargetNumberMargin;
+    public static int HighScore;
 
     void Awake()
     {
@@ -32,7 +33,6 @@ public class GameplayManager : MonoBehaviour
 
     void Start()
     {
-        InitializeVariables();
         NewRound();
 
         CurrentNumber = GameSettings.InitialCurrentNumber;
@@ -151,9 +151,10 @@ public class GameplayManager : MonoBehaviour
         LevelManager.Instance.GenerateLevel();
     }
 
-    private void InitializeVariables()
+    public static void InitializeVariables()
     {
         CurrentRound = GameSettings.InitialCurrentRound;
         CurrentNumber = GameSettings.InitialCurrentNumber;
+        HighScore = GameSettings.InitialHighScore;
     }
 }
