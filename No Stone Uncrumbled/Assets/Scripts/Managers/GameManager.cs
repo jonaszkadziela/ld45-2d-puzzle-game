@@ -6,7 +6,7 @@ public class GameManager : MonoBehaviour
 
     public static bool GameOver;
 
-    public GameOverUI gameOverUI;
+    public GameObject gameOverUI;
 
     void Awake()
     {
@@ -23,15 +23,6 @@ public class GameManager : MonoBehaviour
         GameOver = false;
     }
 
-    void Update()
-    {
-        // TODO: Implement a proper Pause UI with quit button
-        if (Input.GetButtonDown("Cancel"))
-        {
-            QuitGame();
-        }
-    }
-
     public void TriggerGameOver()
     {
         AudioLayersManager.Instance.Reset();
@@ -39,18 +30,6 @@ public class GameManager : MonoBehaviour
 
         GameOver = true;
         SavesManager.Save();
-        gameOverUI.Show();
-    }
-
-    public void QuitGame()
-    {
-        SavesManager.Save();
-        SceneFade.Instance.FadeOut();
-        Invoke("ApplicationQuit", SceneFade.Instance.fadeDuration);
-    }
-
-    private void ApplicationQuit()
-    {
-        Application.Quit();
+        gameOverUI.SetActive(true);
     }
 }

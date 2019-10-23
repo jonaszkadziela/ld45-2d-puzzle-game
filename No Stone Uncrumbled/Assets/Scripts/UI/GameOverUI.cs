@@ -3,17 +3,21 @@ using TMPro;
 
 public class GameOverUI : MonoBehaviour
 {
-    public GameObject gameOverUI;
     public GameObject statisticsUI;
 
-    public TextMeshProUGUI roundsCompletedValue;
+    public TextMeshProUGUI currentRoundValue;
+    public TextMeshProUGUI highScoreValue;
 
-    public void Show()
+    public float animateScoreDelay = 1.5f;
+
+    void OnEnable()
     {
         statisticsUI.SetActive(false);
-        gameOverUI.SetActive(true);
 
-        roundsCompletedValue.text = GameplayManager.CurrentRound.ToString();
+        currentRoundValue.text = "0";
+        highScoreValue.text = "0";
+
+        Invoke("AnimateScore", animateScoreDelay);
     }
 
     public void Menu()
@@ -24,5 +28,11 @@ public class GameOverUI : MonoBehaviour
     public void Restart()
     {
         SceneFade.Instance.FadeTo(SceneEnum.Game);
+    }
+
+    private void AnimateScore()
+    {
+        UIManager.Instance.AnimatedCounter(currentRoundValue, GameplayManager.CurrentRound);
+        UIManager.Instance.AnimatedCounter(highScoreValue, GameplayManager.HighScore);
     }
 }

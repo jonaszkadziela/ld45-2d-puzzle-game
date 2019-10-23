@@ -6,15 +6,4 @@ public class MainMenuUI : MonoBehaviour
     {
         SceneFade.Instance.FadeTo(SceneEnum.Game);
     }
-
-    public void QuitGame()
-    {
-        SceneFade.Instance.FadeOut();
-        Invoke("ApplicationQuit", SceneFade.Instance.fadeDuration);
-    }
-
-    private void ApplicationQuit()
-    {
-        Application.Quit();
-    }
 }
