@@ -1,19 +1,18 @@
 ﻿using System;
 using System.Collections;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using HelperMethods;
 
 public class AudioLayersManager : MonoBehaviour
 {
     public static AudioLayersManager Instance;
 
+    public static bool InitializedAudioLayers = false;
+
     public string audioLayersContainerName = "Audio Layers";
     public float fadeDuration = 2f;
     public AnimationCurve fadeCurve;
     public AudioLayer[] audioLayers;
-
-    private bool initializedAudioLayers = false;
 
     void Awake()
     {
@@ -25,11 +24,6 @@ public class AudioLayersManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-    }
-
-    void OnEnable()
-    {
-        SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
     void Start()
@@ -51,8 +45,7 @@ public class AudioLayersManager : MonoBehaviour
             layer.source.Play();
         }
 
-        UnmuteSceneLayer();
-        initializedAudioLayers = true;
+        InitializedAudioLayers = true;
     }
 
     public void Reset()
@@ -90,31 +83,6 @@ public class AudioLayersManager : MonoBehaviour
         }
 
         StartCoroutine(FadeIn(layer));
-    }
-
-    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
-    {
-        if (initializedAudioLayers)
-        {
-            Reset();
-            UnmuteSceneLayer(scene.name);
-        }
-    }
-
-    private void UnmuteSceneLayer(string sceneName = "")
-    {
-        sceneName = sceneName == "" ? SceneManager.GetActiveScene().name : sceneName;
-
-        switch (sceneName)
-        {
-            case "MainMenu":
-                Unmute("MainMenu-Loop");
-            break;
-
-            case "Game":
-                Unmute("Gameplay-Loop");
-            break;
-        }
     }
 
     private IEnumerator FadeIn(AudioLayer layer)

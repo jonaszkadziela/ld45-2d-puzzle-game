@@ -20,8 +20,6 @@ public class GameManager : MonoBehaviour
             return;
         }
 
-        GameplayManager.InitializeVariables();
-        SavesManager.Load();
         GameOver = false;
     }
 

@@ -18,11 +18,11 @@ public class GameOverUI : MonoBehaviour
 
     public void Menu()
     {
-        SceneFade.Instance.FadeTo("MainMenu");
+        SceneFade.Instance.FadeTo(SceneEnum.MainMenu);
     }
 
     public void Restart()
     {
-        SceneFade.Instance.FadeTo("Game");
+        SceneFade.Instance.FadeTo(SceneEnum.Game);
     }
 }

@@ -52,7 +52,7 @@ public class SceneFade : MonoBehaviour
         StartCoroutine(FadeOutAnimation());
     }
 
-    public void FadeTo(string sceneName)
+    public void FadeTo(SceneEnum scene)
     {
         if (isFading)
         {
@@ -60,7 +60,17 @@ public class SceneFade : MonoBehaviour
         }
 
         FadeOut();
-        StartCoroutine(ChangeScene(sceneName));
+        StartCoroutine(ChangeScene(scene));
+    }
+
+    private IEnumerator ChangeScene(SceneEnum scene)
+    {
+        while (isFading)
+        {
+            yield return 0;
+        }
+
+        SceneManager.LoadScene(PredefinedScene.GetName(scene));
     }
 
     private IEnumerator FadeInAnimation()
@@ -99,15 +109,5 @@ public class SceneFade : MonoBehaviour
         }
 
         isFading = false;
-    }
-
-    private IEnumerator ChangeScene(string sceneName)
-    {
-        while (isFading)
-        {
-            yield return 0;
-        }
-
-        SceneManager.LoadScene(sceneName);
     }
 }

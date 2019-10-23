@@ -33,6 +33,7 @@ public class GameplayManager : MonoBehaviour
 
     void Start()
     {
+        InitializeVariables();
         NewRound();
 
         CurrentNumber = GameSettings.InitialCurrentNumber;
@@ -151,10 +152,9 @@ public class GameplayManager : MonoBehaviour
         LevelManager.Instance.GenerateLevel();
     }
 
-    public static void InitializeVariables()
+    private void InitializeVariables()
     {
         CurrentRound = GameSettings.InitialCurrentRound;
         CurrentNumber = GameSettings.InitialCurrentNumber;
-        HighScore = GameSettings.InitialHighScore;
     }
 }

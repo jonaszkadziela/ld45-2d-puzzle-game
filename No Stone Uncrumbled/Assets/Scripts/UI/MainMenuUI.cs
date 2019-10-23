@@ -4,7 +4,7 @@ public class MainMenuUI : MonoBehaviour
 {
     public void Play()
     {
-        SceneFade.Instance.FadeTo("Game");
+        SceneFade.Instance.FadeTo(SceneEnum.Game);
     }
 
     public void QuitGame()
