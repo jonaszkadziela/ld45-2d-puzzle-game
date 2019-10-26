@@ -10,8 +10,8 @@
     public static int MoneyRewardDecreasePerMinute = 10;
     public static float EnergyDecreaseSlowness = 10f;
 
-    public static RangeInt MoneyRewardRange = new RangeInt(10, 50);
-    public static RangeInt EnergyRewardRange = new RangeInt(10, 50);
+    public static RangeInt MoneyRewardRange = new RangeInt(5, 20);
+    public static RangeInt EnergyRewardRange = new RangeInt(5, 20);
 
     /**
      * Gameplay Settings
