@@ -11,8 +11,8 @@ public class GameSettings : MonoBehaviour
     public int moneyRewardDecreasePerMinute = 10;
     public float initialEnergy = 50f;
     public float energyDecreaseSlowness = 10f;
-    public RangeInt moneyRewardRange = new RangeInt(10, 50);
-    public RangeInt energyRewardRange = new RangeInt(10, 50);
+    public RangeInt moneyRewardRange = new RangeInt(5, 20);
+    public RangeInt energyRewardRange = new RangeInt(5, 20);
 
     [Header("Gameplay Settings")]
     public float movementThreshold = 0.01f;

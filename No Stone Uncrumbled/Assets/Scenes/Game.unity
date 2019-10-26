@@ -95336,7 +95336,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa9f1e8ee78c08e438ca46e9b08be460, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectsList: []
 --- !u!114 &1021540599
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -95354,11 +95353,11 @@ MonoBehaviour:
   initialEnergy: 50
   energyDecreaseSlowness: 10
   moneyRewardRange:
-    min: 10
-    max: 50
+    min: 5
+    max: 20
   energyRewardRange:
-    min: 10
-    max: 50
+    min: 5
+    max: 20
   movementThreshold: 0.01
   rockSpawnAmount:
     min: 20
